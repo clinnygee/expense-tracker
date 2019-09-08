@@ -24,8 +24,9 @@ class SignIn extends Component {
         e.preventDefault();
 
         console.log(this.state);
+        
+        this.props.handleLogInForm({username: this.state.Username, password: this.state.Password});
 
-        this.authenticateUser({username: this.state.Username, password: this.state.Password});
     }
 
     authenticateUser = (credentials) => {

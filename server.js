@@ -7,6 +7,7 @@ const path = require('path');
 const app = express();
 
 const User = require('./models/User/User');
+const withAuth = require('./middleware/auth/auth');
 
 const secret = 'expense-tracker';
 
@@ -28,6 +29,10 @@ mongoose.connect(mongo_uri, {useNewUrlParser: true}, (err) => {
     }
 })
 
+// app.use((req, res, next) => {
+//     res.setHeader('Content-Type', 'application/json');
+//     next();
+// })
 // app.use((req, res) => {
 //     res.setHeader('Content-Type', 'text/plain');
 //     res.write('you posted: \n');
@@ -83,11 +88,16 @@ app.post('/login', (req, res) => {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '24h'
                     });
-                    res.cookie('token', token, {httpOnly: true}).sendStatus(200);
+                    res.cookie(`expense-tracker:${username}`, token, {httpOnly: true}).status(200);
+                    res.json(JSON.stringify({user: username}));
                 }
             })
         }
     })
+});
+
+app.get('/checkToken', withAuth, (req, res) => {
+    res.sendStatus(200);
 })
 
 

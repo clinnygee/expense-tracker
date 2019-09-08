@@ -12,7 +12,9 @@ class SignUp extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        this.registerUser({username: this.state.Username, password: this.state.Password});
+        // this.registerUser({username: this.state.Username, password: this.state.Password});
+
+        this.props.handleSignUpForm({username: this.state.Username, password: this.state.Password});
         
     }
 
@@ -42,6 +44,8 @@ class SignUp extends Component {
     };
 
     render() {
+
+        console.log(this.props)
         return (
             <div className='form-container'>
                 <div className='form-container-header'>
