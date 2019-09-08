@@ -12,7 +12,7 @@ class SignUp extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        this.registerUser(this.state);
+        this.registerUser({username: this.state.Username, password: this.state.Password});
         
     }
 

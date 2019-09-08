@@ -2,6 +2,43 @@ import React, { Component } from 'react';
 import './toggleableForm.css';
 
 class SignIn extends Component {
+
+    state = {
+        Username: '',
+        Password: '',
+    }
+
+    onFieldChange = (e) => {
+        
+        
+        if(e.target.placeholder === 'Username'){
+            this.setState({Username: e.target.value})
+        } else  {
+            this.setState({Password: e.target.value})
+        } 
+
+        
+    };
+
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(this.state);
+
+        this.authenticateUser({username: this.state.Username, password: this.state.Password});
+    }
+
+    authenticateUser = (credentials) => {
+        return fetch('/login', {
+            method: 'post',
+            body: JSON.stringify(credentials),
+            headers: {
+                'Accept': 'application/json',
+                'content-type': 'application/json',
+            },
+        }).then(res => console.log(res));
+    }
+
     render() {
         return (
             <div className='form-container'>
@@ -10,10 +47,10 @@ class SignIn extends Component {
                 </div>
                 
                 <form className='form-container-form'>
-                    <input className='form-container-form-text'type='username' placeholder='Username' required />
-                    <input className='form-container-form-text' type='password' placeholder='Password' required />
+                    <input onChange={this.onFieldChange} className='form-container-form-text'type='username' placeholder='Username' required />
+                    <input onChange={this.onFieldChange} className='form-container-form-text' type='password' placeholder='Password' required />
                     
-                    <input className='form-container-form-button' type='submit' value='LOG IN' />
+                    <input onClick={this.handleFormSubmit} className='form-container-form-button' type='submit' value='LOG IN' />
                 </form>
                 <div className='form-container-toggle'>
                     <p>Dont have an account?</p>
