@@ -7,7 +7,7 @@ class Container extends Component {
 
     state = {
         // resStatus: null,
-        resStatus: 200,
+        resStatus: null,
         loggedIn: false,
     }
 
@@ -43,17 +43,29 @@ class Container extends Component {
     };
 
     authenticateUser = () => {
+        
         fetch('/checkToken').then(res => {
             console.log(res);
+        }).then(res => {
+            if(res.status === 200){
+                this.setState({resStatus: res.status});
+            }
         });
     }
 
     componentDidMount(){
-        fetch('/checkToken').then(res => {
-            console.log(res);
+        fetch('/checkToken', {
+            method: 'GET',
+            
+        }).then(res => {
+            console.log(res.status)
+            if(res.status === 200){
+                console.log(res.status);
+                this.setState({resStatus: res.status})
+            };
         })
         // check if the user is already logged in.
-    }
+    };
 
     render(){
 

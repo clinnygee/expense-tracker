@@ -1,12 +1,16 @@
 import React from 'react';
 import Container from '../src/Components/Container/container';
+import {BrowserRouter} from 'react-router-dom';
 
 
 
 function App() {
   return (
       <div>
-        <Container />
+        <BrowserRouter>
+          <Container />
+        </BrowserRouter>
+          
       </div>
       
     

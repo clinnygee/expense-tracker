@@ -100,6 +100,10 @@ app.get('/checkToken', withAuth, (req, res) => {
     res.sendStatus(200);
 })
 
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+})
+
 
 
 app.listen(process.env.PORT || 8080) 

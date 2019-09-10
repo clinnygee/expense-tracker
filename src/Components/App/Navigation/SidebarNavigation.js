@@ -5,28 +5,32 @@ import {faChartLine} from '@fortawesome/free-solid-svg-icons';
 import {faBell} from '@fortawesome/free-solid-svg-icons';
 import {faCogs} from '@fortawesome/free-solid-svg-icons';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
-
+import {Link} from 'react-router-dom';
 
 class SidebarNavigation extends Component {
     render() {
         return (
             <div className = 'sidebar-nav-links-scrollable'>
-                <div className='sidebar-nav-links-scrollable-link'>
-                    <div>
-                        <FontAwesomeIcon icon={faColumns} />
+                <Link to='/dashboard'>
+                    <div className='sidebar-nav-links-scrollable-link'>
+                        <div>
+                            <FontAwesomeIcon icon={faColumns} />
+                        </div>
+                        <div>
+                            Dashboard
+                        </div>
                     </div>
-                    <div>
-                        Dashboard
+                </Link>
+                <Link to='/charts'>
+                    <div className='sidebar-nav-links-scrollable-link'>
+                        <div>
+                            <FontAwesomeIcon icon={faChartLine} />
+                        </div>
+                        <div>
+                            Charts
+                        </div>
                     </div>
-                </div>
-                <div className='sidebar-nav-links-scrollable-link'>
-                    <div>
-                        <FontAwesomeIcon icon={faChartLine} />
-                    </div>
-                    <div>
-                        Charts
-                    </div>
-                </div>
+                </Link>
                 <div className='sidebar-nav-links-scrollable-link'>
                     <div>
                         <FontAwesomeIcon icon={faBars} />
