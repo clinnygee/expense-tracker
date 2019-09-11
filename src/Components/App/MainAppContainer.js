@@ -9,7 +9,7 @@ class MainAppContainer extends Component {
         return (
             <div className='main-app'>
                 <SideBar />
-                <div className='main-app-content'>
+                <div className='main-app-container'>
                     <MainAppContent />
                 </div>
             </div>

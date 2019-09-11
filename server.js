@@ -88,8 +88,9 @@ app.post('/login', (req, res) => {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '24h'
                     });
-                    res.cookie(`expense-tracker:${username}`, token, {httpOnly: true}).status(200);
-                    res.json(JSON.stringify({user: username}));
+                    // res.cookie(`expense-tracker:${username}`, token, {httpOnly: true}).status(200);
+                    res.json({token: token});
+                    // res.json(JSON.stringify({user: username}));
                 }
             })
         }
@@ -97,6 +98,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/checkToken', withAuth, (req, res) => {
+    console.log(req.username);
     res.sendStatus(200);
 })
 

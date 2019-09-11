@@ -9,6 +9,7 @@ class Container extends Component {
         // resStatus: null,
         resStatus: null,
         loggedIn: false,
+        token: null,
     }
 
     handleSignUpForm = (credentials) => {
@@ -34,36 +35,62 @@ class Container extends Component {
                 'Accept': 'application/json',
                 'content-type': 'application/json',
             },
-        }).then(res => this.handleLogInResponse(res));
+        }).then(res => {
+            if(res.status === 200){
+                this.setState({resStatus: 200});
+                res.json().then( res => {
+                    this.handleLogInResponse(res)
+                });                              
+
+            } else {
+                console.log('No Token Authorized')
+            }
+        })
+        
     };
 
     handleLogInResponse = (res) => {
-        console.log(res);
-        this.setState({resStatus: res.status});
+        // set the token in state, or in the context api.
+        console.log(res.token);
+        sessionStorage.setItem('jwt', res.token);
+        this.setState({token: res.token});
+        // this.setState({resStatus: res.status});
+        console.log(sessionStorage.getItem('jwt'));
+        // console.log(res.json());
     };
 
     authenticateUser = () => {
         
-        fetch('/checkToken').then(res => {
-            console.log(res);
-        }).then(res => {
-            if(res.status === 200){
-                this.setState({resStatus: res.status});
+        let token = sessionStorage.getItem('jwt');
+        fetch('/checkToken', {
+            method: 'GET',
+            headers : {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             }
-        });
+        }).then(res => {
+            this.setState({resStatus: res.status});
+        })
     }
 
     componentDidMount(){
-        fetch('/checkToken', {
-            method: 'GET',
+        // fetch('/checkToken', {
+        //     method: 'GET',
             
-        }).then(res => {
-            console.log(res.status)
-            if(res.status === 200){
-                console.log(res.status);
-                this.setState({resStatus: res.status})
-            };
-        })
+        // }).then(res => {
+        //     console.log(res.status)
+        //     if(res.status === 200){
+        //         console.log(res.status);
+        //         console.log(res);
+        //         console.log(res.json())
+        //         this.setState({resStatus: res.status})
+        //     };
+        // }).then()
+        // fetch('/checkToken', {
+        //     method: 'GET',
+            
+        // }).then(res => res.json()).then(res => console.log(res));
+        this.authenticateUser();
         // check if the user is already logged in.
     };
 
