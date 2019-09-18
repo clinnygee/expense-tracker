@@ -4,6 +4,7 @@ import './MainAppContent.css';
 import Dashboard from './Dashboard/Dashboard';
 import Charts from './Charts/Charts'
 import Calender from './Calander/Calender';
+import Create from './Create/Create'
 
 class MainAppContent extends Component {
     render() {
@@ -14,6 +15,7 @@ class MainAppContent extends Component {
                 <Switch>
                     <Route exact path ='/dashboard' component={Dashboard}/>
                     <Route path ='/charts' component={Charts} />
+                    <Route path = '/create' component={Create} />
                 </Switch>
 
             </main>

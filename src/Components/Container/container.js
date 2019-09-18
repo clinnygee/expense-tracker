@@ -74,22 +74,7 @@ class Container extends Component {
     }
 
     componentDidMount(){
-        // fetch('/checkToken', {
-        //     method: 'GET',
-            
-        // }).then(res => {
-        //     console.log(res.status)
-        //     if(res.status === 200){
-        //         console.log(res.status);
-        //         console.log(res);
-        //         console.log(res.json())
-        //         this.setState({resStatus: res.status})
-        //     };
-        // }).then()
-        // fetch('/checkToken', {
-        //     method: 'GET',
-            
-        // }).then(res => res.json()).then(res => console.log(res));
+        
         this.authenticateUser();
         // check if the user is already logged in.
     };

@@ -7,16 +7,24 @@ class Summary extends Component {
             <div className='summary'>
                 <div className='summary-container'>
                     <div className="summary-container-totals">
-                        <p className='summary-container-totals-word'>Income</p>
-                        <p className='summary-container-totals-number'>770</p>
+                        <div >
+                            <p className='summary-container-totals-word'>Income</p>
+                            <p className='summary-container-totals-number'>770</p>
+                        </div>
+                        
                     </div>
                     <div className="summary-container-totals">
-                        <p className='summary-container-totals-word'>Expenses</p>
-                        <p className='summary-container-totals-number'>408</p>
+                        <div>
+                            <p className='summary-container-totals-word'>Expenses</p>
+                            <p className='summary-container-totals-number'>408</p>
+                        </div>
+                        
                     </div>
                     <div className="summary-container-totals">
-                        <p className='summary-container-totals-word'>Balance</p>
-                        <p className='summary-container-totals-number'>362</p>
+                        <div>
+                            <p className='summary-container-totals-word'>Balance</p>
+                            <p className='summary-container-totals-number'>362</p>
+                        </div>                        
                     </div>
                 </div>
             </div>
