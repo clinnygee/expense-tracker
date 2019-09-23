@@ -11,7 +11,7 @@ class MainAppContainer extends Component {
         transactions: null,
     }
 
-    componentDidMount = () => {
+    componentDidMount = async () => {
         // get user data, settings etc from server,
         // get user transaction data from the server
 
@@ -61,9 +61,11 @@ class MainAppContainer extends Component {
 
     setTransactionData = (transactionData) => {
         this.setState({transactions: transactionData});
-    }
+    };
 
     render() {
+
+        
         return (
             <div className='main-app'>
                 <SideBar username={this.state.username}/>

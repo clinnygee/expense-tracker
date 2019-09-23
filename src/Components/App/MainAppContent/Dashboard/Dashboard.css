@@ -53,22 +53,30 @@
     height: calc(100% - 30px);
     overflow: scroll;
     display: grid;
-    grid-auto-rows: 80px;
+    grid-auto-rows: 120px;
     row-gap: 10px;
     justify-items: center;
     padding: 15px 0 15px 0;
 
 }
 
+
+
 .dashboard-scrollable-item{
     min-width: 80%;
     width: 80%;
-    height: 80px;
+    height: 120px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0px 0px 5px 1px #c1c9c9;
     display: grid;
     grid-template-rows: 1fr 4fr;
+}
+
+.open {
+    grid-template-rows: 1fr 4fr 4fr !important;
+    height: 215px;
+    z-index: 100;
 }
 
 .dashboard-scrollable-item-topbar{
@@ -80,7 +88,8 @@
 .dashboard-scrollable-item-date{
     display: inline-block;
     
-    width: 20%;
+    width: 50%;
+    text-align: left;
 }
 
 .dashboard-scrollable-item-type{
@@ -112,4 +121,48 @@
     margin: auto;
 
 }
+
+.dashboard-scrollable-item-expand {
+    position: relative;
+    width: 50px;
+    display: grid;
+    justify-items: center;
+    bottom: 2%;
+    right: 5%;
+    /* transform: translateX() */
+}
+
+.dashboard-scrollable-item-expand button {
+
+}
+
+.dashboard-scrollable-item-open{
+    display: grid;
+    grid-auto-columns: 50px 50px;
+    align-items: center;
+    justify-content: end;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.dashboard-scrollable-item-open-edit {
+    width: 50px;
+    background-color: blue;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.dashboard-scrollable-item-open svg {
+    display: block;
+    margin: auto;
+}
+
+.dashboard-scrollable-item-open-delete {
+    width: 50px;
+    background-color: red;
+    color: #fff;
+    border-radius: 10px;
+    
+}
+
 
