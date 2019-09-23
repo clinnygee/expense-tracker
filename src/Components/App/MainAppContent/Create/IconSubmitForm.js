@@ -5,7 +5,7 @@ class IconSubmitForm extends Component {
     render() {
         return (
             <div className='create-submit-container'>
-                <CategoryIcons display={this.props.type || null} onCategorySelect={this.props.onCategorySelect}/>
+                <CategoryIcons display={this.props.type || null} onCategorySelect={this.props.onCategorySelect} icons={this.props.icons}/>
                 
             </div>
         );

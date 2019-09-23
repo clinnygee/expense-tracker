@@ -7,6 +7,7 @@ const path = require('path');
 const app = express();
 
 const User = require('./models/User/User');
+const Transactions = require('./models/User/Transactions')
 const withAuth = require('./middleware/auth/auth');
 
 const secret = 'expense-tracker';
@@ -48,6 +49,7 @@ app.get('/', (req, res) => {
     console.log('at the log in page');
     res.sendFile(path.join('../', 'build', 'index.html'))
 });
+
 
 app.post('/register', (req, res) => {
     const {username, password} = req.body;
@@ -105,10 +107,55 @@ app.post('/login', (req, res) => {
 app.get('/checkToken', withAuth, (req, res) => {
     console.log(req.username);
     res.sendStatus(200);
+});
+
+// When this recieves a request, it responds with entire user profile, minus password, and the entire history of transactions.
+// Should add a way that each time it is pinged, the object that is sent back is saved, so the next time it is pinged, 
+app.get('/dashboard', withAuth, (req, res) => {
+
+    User.findOne({username: req.username}).populate('transactions').exec((err, foundUser) => {
+        if(err){
+            console.log(err);
+            res.sendStatus(401);
+        } else {
+            console.log('in /dashboard, authorized')
+            console.log(foundUser);
+            res.json(foundUser);
+        }
+    })
+
+    
 })
 
 app.post('/create', withAuth, (req, res) => {
-    
+    console.log('in /create')
+    console.log(req.username);
+    console.log(req.body);
+
+    User.findOne({username: req.username}).then(user => {
+
+        const transaction = new Transactions({
+
+            type: req.body.type,
+            category: req.body.category,
+            date: req.body.date,
+            description: req.body.description,
+            amount: req.body.amount,
+            author: user._id, 
+                
+        });
+
+        console.log(user);
+        console.log(transaction);
+        user.transactions.push(transaction);
+
+        user.save();
+
+        transaction.save();
+
+        console.log(transaction)
+
+    }).then(res.sendStatus(200));
 })
 
 app.get('*', (req, res) => {

@@ -22,10 +22,15 @@
 
 .create-toggle-container-expense {
     justify-self: end;
+   padding-right: 15px;
+   align-self: center;
 }
 
 .create-toggle-container-income {
+    border-left: 2px solid black;
+    padding-left: 15px;
     justify-self: start;
+    align-self: center;
 }
 
 .create-toggle-container p {
@@ -45,21 +50,41 @@
 
 
 .create-submit-icon-container {
-    height: calc(100% - 60px);
+    height: 100%;
     display: grid;
-    grid-template-columns: repeat(10, 50px);
-    column-gap: 10px;
+    grid-template-columns: repeat(5, 100px);
+    grid-template-rows: auto;
+    column-gap: 20px;
+    row-gap: 8px;
     padding: 30px 50px 30px 50px;
     width: calc(100% - 100px);
     height: 20%;
 }
 
 .create-submit-icon {
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 65px;
     font-size: 35px;
     color: rgba(0,0,0,0.6);
     cursor: pointer;
+    display: grid;
+    align-items: center;
+    text-align: center;
+}
+
+.create-submit-icon svg {
+    display: block;
+    margin: auto;
+}
+
+svg {
+    display: block;
+    margin: auto;
+}
+
+.create-submit-icon p {
+    font-size: 15px;
+    text-align: center;
 }
 
 .create-submit-icon:hover {
@@ -80,6 +105,15 @@
 .create-submit-form-form {
     width: 500px;
     height: 500px;
+}
+
+.create-submit-form-form-icon {
+    font-size: 100px;
+}
+
+.create-submit-form-form-icon p {
+    font-size: 50px;
+    text-align: center;
 }
 .create-submit-form-form form {
     width: 100%;

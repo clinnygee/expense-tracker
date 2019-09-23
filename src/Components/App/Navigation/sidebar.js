@@ -15,7 +15,7 @@ class sidebar extends Component {
                         <img src={ThumbnailPicture} alt='user-icon'/>
                     </div>
                     <div className='sidebar-nav-header-username'>
-                        <p>Clinnygee</p>
+                        <p>{this.props.username}</p>
                     </div>
                     <div className='sidebar-nav-header-settings'>
                         <i className='fas fa-camera'></i>

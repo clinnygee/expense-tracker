@@ -30,21 +30,66 @@ class Create extends Component {
 
     handleDateSelect = date => this.setState({date: date});
 
-    handleCategorySelect = (e) => {
-
-        console.log(e.target);
-
-        const icon = e.target.dataset.icon;
-
-        console.log(icon);
-
-        const category = categoriesAndIcons[icon].category;
-
-        if(category){
-            this.setState({category: category});
-        }
+    handleCategorySelect = (category) => {
 
         console.log(category);
+
+        this.setState({category: category});
+        // console.log(e.target);
+
+        // const icon = e.target.dataset.icon;
+
+        // console.log(icon);
+
+        // const category = categoriesAndIcons[icon].category;
+
+        // if(category){
+        //     this.setState({category: category});
+        // }
+
+        // console.log(category);
+    }
+
+    getSubmitFormIcon = () => {
+
+        if (this.state.type === 'expense'){
+        const category = expenseCategoriesAndIcons.filter((expense) => {
+            console.log('expense categoory: ' + expense.category + ' state category: ' + this.state.category)
+            return expense.category === this.state.category;
+        })
+
+        return category[0];
+        } else {
+            const category = incomeCategoriesAndIcons.filter((income) => {
+                return income.category === this.state.category;
+            })
+            return category[0];
+        }
+
+    }
+
+    handleCreateSubmit = (amount, description) => {
+        console.log(amount + "" + description);
+        console.log(this.state);
+
+        this.setState({amount: amount, description: description});
+
+        this.submitTransaction({category: this.state.category, type: this.state.type, date: this.state.date, amount: amount, description: description});
+
+       
+    };
+
+    submitTransaction = (transaction) => {
+        let token = sessionStorage.getItem('jwt');
+        return fetch('/create', {
+            method: 'POST',
+            body: JSON.stringify(transaction),
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            },
+            
+        }).then(res => console.log(res))
     }
 
     render() {
@@ -52,9 +97,23 @@ class Create extends Component {
             <div className='create-container'>
                 <IncomeExpenseToggle activeType={this.state.type} onToggle={this.handleTypeToggle}/>
 
-                <IconSubmitForm type={this.state.type} onCategorySelect={this.handleCategorySelect}/>
+                <IconSubmitForm 
+
+                    type={this.state.type} 
+                    onCategorySelect={this.handleCategorySelect} 
+                    icons={this.state.type === 'expense' ? expenseCategoriesAndIcons : incomeCategoriesAndIcons}
+
+                />
                     {/* Allows input of a date, into selected by react calendar, description, and amount */}
-                <SubmitForm onDateSelect={this.handleDateSelect} date={this.state.date} display={this.state.category}/>
+                <SubmitForm 
+
+                    onDateSelect={this.handleDateSelect} 
+                    date={this.state.date} 
+                    display={this.state.category} 
+                    icon={this.getSubmitFormIcon()}
+                    onSubmit={this.handleCreateSubmit}
+                
+                />
 
             </div>
 
@@ -65,49 +124,74 @@ class Create extends Component {
 
 
 
+    const incomeCategoriesAndIcons = [
+        {
+            icon: 'wallet',
+            category: 'salary',
+        }, 
+        {
+            icon: 'chart-line',
+            category: 'dividends',
+        },
+        {
+            icon: 'gift',
+            category: 'gift'
+        },
+        {
+            icon: 'money-check-alt',
+            category: 'investment'
+        },
+        {
+            icon: 'undo',
+            category: 'refund',
+        }
+    ]
+   
 
-    const categoriesAndIcons = {
-        utensils: {
-            icon: {faUtensils},
+    const expenseCategoriesAndIcons = [
+         {
+            icon: 'utensils',
             category: 'food',
         },
-        home: {
-            icon: {faHome},
+        {
+            icon: 'home',
             category: 'rent'
         },
-        car: {
-            icon: {faCar},
+         {
+            icon: 'car',
             category: 'car',
         },
-        gamepad: {
-            icon: {faGamepad},
+         {
+            icon: 'gamepad',
             category: 'entertainment'
         },
-        file: {
-            icon: {faFileInvoiceDollar},
+         {
+            icon: 'file-invoice-dollar',
             category: 'bills',
         },
-        phone: {
-            icon: {faPhoneSquare},
+         {
+            icon: 'phone-square',
             category: 'phone',
         },
-        internet: {
-            icon: {faNetworkWired},
+         {
+            icon: 'network-wired',
             category: 'internet',
         },
-        glass: {
-            icon: {faGlassCheers},
+         {
+            icon: 'glass-cheers',
             category: 'kick-ons',
         }, 
-        tv: {
-            icon: {faTv},
+         {
+            icon: 'tv',
             category: 'electronics',
         },
-        star: {
-            icon: {faStar},
+         {
+            icon: 'star',
             category: 'subscriptions'
-        }
-    }
+         }
+        ]
+    
+
 
 
 export default Create;

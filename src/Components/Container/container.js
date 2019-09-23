@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ToggleableForm from '../SignIn/ToggleableForm/ToggleableForm';
 import MainAppContainer from '../App/MainAppContainer'
+import {Redirect} from 'react-router-dom';
 import './container.css';
 
 class Container extends Component {
@@ -62,6 +63,8 @@ class Container extends Component {
     authenticateUser = () => {
         
         let token = sessionStorage.getItem('jwt');
+
+        
         fetch('/checkToken', {
             method: 'GET',
             headers : {
@@ -86,8 +89,9 @@ class Container extends Component {
         if(this.state.resStatus === 200){
             return (
                 <div className='app'>
-                    <MainAppContainer />
+                    <MainAppContainer default='/dashboard'/>
                 </div>
+                // <Redirect to='/dashboard' />
             )
         } else {
             return (

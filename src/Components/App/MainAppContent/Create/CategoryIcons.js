@@ -1,22 +1,21 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faUtensils, faHome, faCar, faGamepad, faFileInvoiceDollar, faPhoneSquare, faNetworkWired, faGlassCheers, faTv, faStar } from '@fortawesome/free-solid-svg-icons';
+import Icon from './Icon';
 
 const CategoryIcons = (props) => {
 
-    const click = (e) => {
-        console.log(e.target.dataset.icon);
-    }
+    console.log(props.icons);
+    
+    const icons = props.icons.map(icon => (
+        <Icon icon={icon.icon} category={icon.category} onCategorySelect={props.onCategorySelect}/>
+    ))
 
-    if (props.display === 'income'){
-        return (
-            <div>Income</div>
-        )
-    } else {
+    
         
         return (
             <div className='create-submit-icon-container'>
-                <div className='create-submit-icon' >
+                {/* <div className='create-submit-icon' >
                     <FontAwesomeIcon icon={faUtensils} onClick={props.onCategorySelect}/>
                 </div>
                 <div className='create-submit-icon'>
@@ -46,10 +45,11 @@ const CategoryIcons = (props) => {
                 <div className='create-submit-icon'>
                     <FontAwesomeIcon icon={faStar}/>
                 </div>
-                
+                 */}
+                 {icons}
             </div>
         )
-    }
+    
 };
 
 
