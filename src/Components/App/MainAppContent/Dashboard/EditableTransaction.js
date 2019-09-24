@@ -37,7 +37,7 @@ class EditableTransaction extends Component {
             backgroundColor: this.props.type === 'expense' ? '#eb5960' : '#6ee05a'
         };
 
-        console.log(this.state.open);
+        
 
         const date = new Date(this.props.date).toUTCString().split(" ").slice(0, 3).join(" ");
 

@@ -29,7 +29,7 @@ class MainAppContent extends Component {
                     <Route path ='/charts' component={Charts} />
                     <Route path = '/create' component={Create} />
                 </Switch>
-
+                
             </main>
         );
     }

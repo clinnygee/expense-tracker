@@ -3,6 +3,7 @@ import ToggleableForm from '../SignIn/ToggleableForm/ToggleableForm';
 import MainAppContainer from '../App/MainAppContainer'
 import {Redirect} from 'react-router-dom';
 import './container.css';
+import {UserConsumer} from '../../user-context';
 
 class Container extends Component {
 
@@ -89,7 +90,13 @@ class Container extends Component {
         if(this.state.resStatus === 200){
             return (
                 <div className='app'>
-                    <MainAppContainer default='/dashboard'/>
+                    <UserConsumer>
+                        {context => (
+                            <MainAppContainer default='/dashboard' updateUserData={context.updateUserData}/>
+                        )}
+                        
+                    </UserConsumer>
+                    
                 </div>
                 // <Redirect to='/dashboard' />
             )
