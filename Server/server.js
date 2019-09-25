@@ -61,7 +61,8 @@ app.post('/register', (req, res) => {
             console.log(err);
             res.status(500).send("Error registering new user, please try again");
         } else {
-            res.status(200).send('Signed up!');
+            // untested
+            res.status(200).json(user);
         }
     })
     // console.log(req.body);
@@ -96,6 +97,7 @@ app.post('/login', (req, res) => {
                         expiresIn: '24h'
                     });
                     // res.cookie(`expense-tracker:${username}`, token, {httpOnly: true}).status(200);
+                    // could possibly send back user data here?
                     res.json({token: token});
                     // res.json(JSON.stringify({user: username}));
                 }

@@ -16,11 +16,11 @@ class MainAppContainer extends Component {
         // get user data, settings etc from server,
         // get user transaction data from the server
 
-        this.getTransactionData();
+        // this.getTransactionData();
 
-        setInterval(() => {
-            this.getTransactionData();
-        }, 10000);
+        // setInterval(() => {
+        //     this.getTransactionData();
+        // }, 10000);
 
     };
 

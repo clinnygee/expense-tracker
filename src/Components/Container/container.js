@@ -8,8 +8,8 @@ import {UserConsumer} from '../../user-context';
 class Container extends Component {
 
     state = {
-        // resStatus: null,
-        resStatus: null,
+        
+        
         loggedIn: false,
         token: null,
     }
@@ -39,9 +39,11 @@ class Container extends Component {
             },
         }).then(res => {
             if(res.status === 200){
-                this.setState({resStatus: 200});
+                
+                
                 res.json().then( res => {
                     this.handleLogInResponse(res)
+                    this.props.logInSuccess();
                 });                              
 
             } else {
@@ -53,11 +55,12 @@ class Container extends Component {
 
     handleLogInResponse = (res) => {
         // set the token in state, or in the context api.
-        console.log(res.token);
+        // console.log(res.token);
         sessionStorage.setItem('jwt', res.token);
-        this.setState({token: res.token});
+        
+        this.props.setJwt(res.token);
         // this.setState({resStatus: res.status});
-        console.log(sessionStorage.getItem('jwt'));
+        // console.log(sessionStorage.getItem('jwt'));
         // console.log(res.json());
     };
 
@@ -73,21 +76,27 @@ class Container extends Component {
                 'Authorization': `Bearer ${token}`,
             }
         }).then(res => {
-            this.setState({resStatus: res.status});
+            if(res.status === 200){
+                this.props.setJwt(token);
+                this.props.logInSuccess()
+            }
+            
         })
     }
 
     componentDidMount(){
         
         this.authenticateUser();
-        // check if the user is already logged in.
+        // check if the user is storing a valid jwt.
     };
 
     render(){
 
-        console.log(this.state.resStatus);
+        console.log(this.props)
 
-        if(this.state.resStatus === 200){
+        
+
+        if(this.props.authenticated){
             return (
                 <div className='app'>
                     <UserConsumer>
@@ -103,7 +112,22 @@ class Container extends Component {
         } else {
             return (
                 <div className='app'>
-                    <ToggleableForm handleSignUpForm={this.handleSignUpForm} handleLogInForm={this.handleLogInForm}/>
+                    <UserConsumer>
+                        
+                        {
+                            context => (
+                            
+                            <ToggleableForm 
+                        
+                            handleSignUpForm={this.handleSignUpForm} 
+                            handleLogInForm={this.handleLogInForm}
+                            logInSuccess={context.logInSuccess}
+
+                            />     
+
+                            )}
+                    </UserConsumer>
+                    
                 </div>
                 
             )

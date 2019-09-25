@@ -6,6 +6,7 @@ import Charts from './Charts/Charts'
 import Calender from './Calander/Calender';
 import Create from './Create/Create'
 import Picker from 'react-month-picker';
+import {UserConsumer} from '../../../user-context';
 
 class MainAppContent extends Component {
 
@@ -21,14 +22,28 @@ class MainAppContent extends Component {
             <main className='main-app-content'>
                 {/* Here we need Calander */}
                 <Calender />
-                <Switch>
-                    <Route exact path ='/dashboard' 
-                        render={() => <Dashboard transactions={this.props.transactions}/>}
-                        // component={Dashboard }
-                    />
-                    <Route path ='/charts' component={Charts} />
-                    <Route path = '/create' component={Create} />
-                </Switch>
+                <UserConsumer>
+                    {context => (
+                        <Switch>
+                        <Route exact path ='/dashboard' 
+                            render={() => <Dashboard transactions={context.transactions}/>}
+                            // component={Dashboard }
+                        />
+                        <Route path ='/charts' component={Charts} />
+                        <Route path = '/create' 
+                            render={() => <Create requestUpdate={context.requestUpdate}/>}
+                        />
+                        </Switch>
+                    )}
+                </UserConsumer>
+                    {/* <Switch>
+                        <Route exact path ='/dashboard' 
+                            render={() => <Dashboard transactions={this.props.transactions}/>}
+                            // component={Dashboard }
+                        />
+                        <Route path ='/charts' component={Charts} />
+                        <Route path = '/create' component={Create} />
+                    </Switch> */}
                 
             </main>
         );

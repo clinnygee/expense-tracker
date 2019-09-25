@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import IncomeExpenseToggle from './IncomeExpenseToggle';
 import IconSubmitForm from './IconSubmitForm';
 import SubmitForm from './SubmitForm';
-import { faUtensils, faHome, faCar, faGamepad, faFileInvoiceDollar, faPhoneSquare, faNetworkWired, faGlassCheers, faTv, faStar } from '@fortawesome/free-solid-svg-icons';
 
 // Displays a top bar that is a choice between income/expense.
 
@@ -76,7 +75,7 @@ class Create extends Component {
 
         this.submitTransaction({category: this.state.category, type: this.state.type, date: this.state.date, amount: amount, description: description});
 
-       
+    //    after submit, let provider know that there is an update to data, and get it to fetch it.
     };
 
     submitTransaction = (transaction) => {
@@ -89,7 +88,14 @@ class Create extends Component {
                 'Authorization': `Bearer ${token}`,
             },
             
-        }).then(res => console.log(res))
+        }).then(res => {
+            console.log(res)
+            if(res.status === 200){
+                this.props.requestUpdate();
+            }
+            // if 200 status,
+            // let context know that there is an update
+        })
     }
 
     render() {

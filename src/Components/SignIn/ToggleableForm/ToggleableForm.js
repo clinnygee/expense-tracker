@@ -26,7 +26,7 @@ class ToggleableForm extends Component {
         if (this.state.signIn){
             return(
                 <div className='toggleable-form'>
-                    <SignIn onFormToggle={this.handleFormToggle} handleLogInForm={this.props.handleLogInForm}/>
+                    <SignIn onFormToggle={this.handleFormToggle} handleLogInForm={this.props.handleLogInForm} logInSuccess={this.props.logInSuccess}/>
                 </div>
             )
         } else {

@@ -28,7 +28,8 @@ class SignIn extends Component {
         this.props.handleLogInForm({username: this.state.Username, password: this.state.Password});
 
     }
-
+    
+    // unused
     authenticateUser = (credentials) => {
         return fetch('/login', {
             method: 'post',
