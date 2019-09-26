@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import IncomeExpenseToggle from './IncomeExpenseToggle';
 import IconSubmitForm from './IconSubmitForm';
 import SubmitForm from './SubmitForm';
+import {Redirect} from 'react-router-dom';
 
 // Displays a top bar that is a choice between income/expense.
 
@@ -18,6 +19,7 @@ class Create extends Component {
         date: new Date(),
         description: null,
         amount: null,
+        redirect: false,
     }
 
     handleTypeToggle = () => {
@@ -92,6 +94,7 @@ class Create extends Component {
             console.log(res)
             if(res.status === 200){
                 this.props.requestUpdate();
+                this.setState({redirect: true})
             }
             // if 200 status,
             // let context know that there is an update
@@ -99,6 +102,11 @@ class Create extends Component {
     }
 
     render() {
+        if(this.state.redirect){
+            return(
+                <Redirect to='/dashboard' />
+            )
+        } else {
         return (
             <div className='create-container'>
                 <IncomeExpenseToggle activeType={this.state.type} onToggle={this.handleTypeToggle}/>
@@ -124,7 +132,7 @@ class Create extends Component {
             </div>
 
             
-        );
+        );}
     }
 }
 

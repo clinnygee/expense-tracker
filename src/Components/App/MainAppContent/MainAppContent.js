@@ -25,14 +25,18 @@ class MainAppContent extends Component {
                 <UserConsumer>
                     {context => (
                         <Switch>
-                        <Route exact path ='/dashboard' 
-                            render={() => <Dashboard transactions={context.transactions}/>}
-                            // component={Dashboard }
-                        />
-                        <Route path ='/charts' component={Charts} />
-                        <Route path = '/create' 
-                            render={() => <Create requestUpdate={context.requestUpdate}/>}
-                        />
+                            {/* this needs a parent component, which contains the switches, which holds in state the request for a redirect
+                            and the redirects url.
+                            
+                            when this occurs, it returns a <Redirect to=/URL />*/}
+                            <Route exact path ='/dashboard' 
+                                render={() => <Dashboard transactions={context.transactions}/>}
+                                // component={Dashboard }
+                            />
+                            <Route path ='/charts' component={Charts} />
+                            <Route path = '/create' 
+                                render={() => <Create requestUpdate={context.requestUpdate}/>}
+                            />
                         </Switch>
                     )}
                 </UserConsumer>
