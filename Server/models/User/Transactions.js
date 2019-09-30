@@ -19,4 +19,8 @@ const transactionsSchema = new mongoose.Schema({
     
 });
 
+// transactionsSchema.pre('find', function(){
+
+// })
+
 module.exports = mongoose.model('Transactions', transactionsSchema);

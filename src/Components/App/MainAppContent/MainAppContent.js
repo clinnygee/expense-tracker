@@ -21,24 +21,34 @@ class MainAppContent extends Component {
         return (
             <main className='main-app-content'>
                 {/* Here we need Calander */}
-                <Calender />
+
+                {/* <Calender /> */}
                 <UserConsumer>
-                    {context => (
-                        <Switch>
-                            {/* this needs a parent component, which contains the switches, which holds in state the request for a redirect
-                            and the redirects url.
-                            
-                            when this occurs, it returns a <Redirect to=/URL />*/}
-                            <Route exact path ='/dashboard' 
-                                render={() => <Dashboard transactions={context.transactions}/>}
-                                // component={Dashboard }
+                    {context => { return (
+                        <React.Fragment>
+                            <Calender 
+                            selectedMonth={context.selectedMonth} 
+                            selectedYear={context.selectedYear}
+                            updateContextMonth={context.updateSelectedMonth}
+                            updateContextYear={context.updateSelectedYear}
                             />
-                            <Route path ='/charts' component={Charts} />
-                            <Route path = '/create' 
-                                render={() => <Create requestUpdate={context.requestUpdate}/>}
-                            />
-                        </Switch>
-                    )}
+
+                            <Switch>
+                                {/* this needs a parent component, which contains the switches, which holds in state the request for a redirect
+                                and the redirects url.
+                                
+                                when this occurs, it returns a <Redirect to=/URL />*/}
+                                <Route exact path ='/dashboard' 
+                                    render={() => <Dashboard transactions={[...context.transactions]}/>}
+                                    // component={Dashboard }
+                                />
+                                <Route path ='/charts' component={Charts} />
+                                <Route path = '/create' 
+                                    render={() => <Create requestUpdate={context.requestUpdate}/>}
+                                />
+                            </Switch>
+                        </React.Fragment>
+                    )}}
                 </UserConsumer>
                     {/* <Switch>
                         <Route exact path ='/dashboard' 

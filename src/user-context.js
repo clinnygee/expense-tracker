@@ -12,6 +12,10 @@ const UserContext = createContext({
     setJwt: () => {},
     getUserData: () => {},
     requestUpdate: () => {},
+    selectedMonth: '',
+    selectedYear: '',
+    updateSelectedMonth: () => {},
+    updateSelectedYear: () => {},
 });
 
 export class UserProvider extends React.Component {
@@ -21,6 +25,10 @@ export class UserProvider extends React.Component {
     // and when the user successfully logs in
     updateUserData = newUserData => {
         console.log(newUserData);
+        newUserData.transactions.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+        })
+        console.log(newUserData.transactions);
         this.setState({username: newUserData.username, transactions: newUserData.transactions, _id: newUserData._id})
     };
     // When this is called, call the function to fetch user data.
@@ -59,15 +67,29 @@ export class UserProvider extends React.Component {
         this.getUserData();
     }
 
+    updateSelectedMonth = (month) => {
+        console.log('in updateSelectedMonth, month: ' + this.state.selectedMonth)
+        this.setState({selectedMonth: month});
+    };
+
+    updateSelectedYear = (year) => {
+        console.log('in updateSelected year, year: ' + this.state.selectedYear)
+        this.setState({selectedYear: year});
+    };
+
     state = {
         username: '',
         transactions: [],
         _id: '',
+        selectedMonth: new Date().getMonth(),
+        selectedYear: new Date().getFullYear(),
         updateUserData: this.updateUserData,
         logInSuccess: this.logInSuccess,
         setJwt: this.setJwt,
         getUserData: this.getUserData,
         requestUpdate: this.requestUpdate,
+        updateSelectedMonth: this.updateSelectedMonth,
+        updateSelectedYear: this.updateSelectedYear,
     };
 
     

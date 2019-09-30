@@ -6,7 +6,7 @@ import EditableTransaction from './EditableTransaction';
 
 class Dashboard extends Component {
 
-    
+    // This component WILL only receive props that are for the current month
 
 
         state = {
@@ -67,6 +67,10 @@ class Dashboard extends Component {
     
 
     componentDidMount = () => {
+        this.setTotalIncomeAndExpense();
+    }
+
+    componentWillReceiveProps = () => {
         this.setTotalIncomeAndExpense();
     }
 

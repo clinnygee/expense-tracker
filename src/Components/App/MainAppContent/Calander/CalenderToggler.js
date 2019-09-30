@@ -8,7 +8,7 @@ const CalenderToggler = (props) => {
         <div className='calender-toggler' onClick={props.openMonthSelector}>
             <div className='calender-toggler-items'>
                 <div className='calender-toggler-date'>
-                    Sep. 2019
+                    {props.month}. {props.year}
                 </div>
                 <div>
                     <FontAwesomeIcon icon={props.open ? 'sort-up' : 'sort-down'}/>

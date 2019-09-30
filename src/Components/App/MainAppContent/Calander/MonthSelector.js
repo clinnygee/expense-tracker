@@ -5,7 +5,7 @@ class MonthSelector extends React.Component  {
 
     state = {
         selectedYear: this.props.year,
-        selectedMonth: this.props.month,
+        
     }
 
     decrementYear = () => {
@@ -17,7 +17,8 @@ class MonthSelector extends React.Component  {
     }
 
     handleMonthSelect = (clickedMonth) => {
-        this.setState({selectedMonth: clickedMonth})
+        
+        this.props.onSelectMonthAndYear(clickedMonth, this.state.selectedYear)
     }
 
     render(){
@@ -38,13 +39,15 @@ class MonthSelector extends React.Component  {
             
         </div>
                     
-    )}
+    )
+    }
 };
 
 const Month = (props) => {
 
 
     const handleMonthSelect = () => {
+        console.log(props);
         props.onMonthSelect(props.month);
     }
     return (
