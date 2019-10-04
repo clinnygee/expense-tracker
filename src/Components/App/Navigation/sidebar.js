@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './sidebar.css'
 import ThumbnailPicture from '../../../img/default-icon.jpeg';
 import SidebarNavigation from './SidebarNavigation';
+import {UserConsumer} from '../../../user-context';
 
 
 class sidebar extends Component {
@@ -22,7 +23,14 @@ class sidebar extends Component {
                     </div>
                 </div>
                 <div className='sidebar-nav-links'>
-                    <SidebarNavigation />
+                    <UserConsumer>
+                        {
+                            context => (
+                                <SidebarNavigation signOut={context.signOut} />
+                            )
+                        }
+                    </UserConsumer>
+                    
                 </div>
 
                 

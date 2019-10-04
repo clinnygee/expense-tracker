@@ -9,6 +9,7 @@ const UserContext = createContext({
     jwt: '',
     updateUserData: () => {},
     logInSuccess: () => {},
+    signOut: () => {},
     setJwt: () => {},
     getUserData: () => {},
     requestUpdate: () => {},
@@ -42,6 +43,11 @@ export class UserProvider extends React.Component {
     setJwt = jwt => {
         console.log('in context setjwt')
         this.setState({jwt: jwt});
+    };
+
+    signOut = () => {
+        this.setState({authenticated: false});
+        sessionStorage.removeItem('jwt');
     };
 
     getUserData = () => {
@@ -86,6 +92,7 @@ export class UserProvider extends React.Component {
         updateUserData: this.updateUserData,
         logInSuccess: this.logInSuccess,
         setJwt: this.setJwt,
+        signOut: this.signOut,
         getUserData: this.getUserData,
         requestUpdate: this.requestUpdate,
         updateSelectedMonth: this.updateSelectedMonth,

@@ -67,16 +67,18 @@ class Dashboard extends Component {
     
 
     componentDidMount = () => {
-        this.setTotalIncomeAndExpense();
+        // this.setTotalIncomeAndExpense();
     }
 
     componentWillReceiveProps = () => {
-        this.setTotalIncomeAndExpense();
+        // this.setTotalIncomeAndExpense();
     }
 
     render() {
 
         let transactions = null;
+
+        // this.setTotalIncomeAndExpense()
 
         if(this.props.transactions){
             transactions = this.props.transactions.map((transaction) => (
@@ -98,7 +100,7 @@ class Dashboard extends Component {
         return (
             <div className='dashboard-container'>
                 {/* Summary */}
-                <Summary income={this.state.totalIncome} expense={this.state.totalExpenses}/>
+                <Summary transactions={this.props.transactions}/>
                 <div className='dashboard-scrollable-container'>
                     {transactions}
                     {/* List of this months expenditures, which allows you when clicking on them to edit them */}
