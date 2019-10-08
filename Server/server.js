@@ -158,7 +158,25 @@ app.post('/create', withAuth, (req, res) => {
         console.log(transaction)
 
     }).then(res.sendStatus(200));
-})
+});
+
+// processes a delete request for the specified transactionId
+app.delete('/transactions/delete', withAuth, (req, res) => {
+
+    console.log(req.body.transaction_id);
+
+    Transactions.findByIdAndDelete(req.body.transaction_id).then(transaction => {
+        console.log(transaction);
+    })
+
+    res.sendStatus(200);
+});
+
+app.put('/transactions/edit', withAuth, (req, res) => {
+
+    Transactions.findByIdAndDelete(req.body)
+
+});
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(parent_dirname, 'build', 'index.html'));

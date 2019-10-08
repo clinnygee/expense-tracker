@@ -21,19 +21,18 @@ class MainAppContent extends Component {
 
         console.log(transactions)
 
-        console.log(`in filterTransactionsByMonth, pre-filtered transactions: ${transactions}`)
+        
 
         const filteredTransactions = transactions.filter((transaction)=> {
 
             const transactionDate = new Date(transaction.date);
 
-            console.log(transactionDate.getMonth());
-            console.log(transactionDate.getYear())
+            
 
             return (transactionDate.getMonth() === month && transactionDate.getFullYear() === year)
         });
 
-        console.log(`in filterTransactionsByMonth, post-filtered transactions: ${filteredTransactions}`);
+        
 
         return filteredTransactions;
     }
@@ -62,12 +61,17 @@ class MainAppContent extends Component {
                                 <Route exact path ='/dashboard' 
                                 // Only give transactions that are within the month of context.currentYear and currentMonth
                                     // render={() => <Dashboard transactions={[...context.transactions]}/>}
-                                    render={() => <Dashboard transactions={this.filterTransactionsByMonth(context.selectedMonth, context.selectedYear, context.transactions)}/>}
+                                    render={() => <Dashboard 
+                                                        transactions={this.filterTransactionsByMonth(context.selectedMonth, context.selectedYear, context.transactions)}
+                                                        requestUpdate={context.requestUpdate}
+                                                    />}
                                     // component={Dashboard }
                                 />
                                 {/* <Route path ='/charts' component={Charts} /> */}
                                 <Route path ='/charts'
-                                    render={() => <Charts transactions={this.filterTransactionsByMonth(context.selectedMonth, context.selectedYear, context.transactions)}/>}
+                                    render={() => <Charts 
+                                                    transactions={this.filterTransactionsByMonth(context.selectedMonth, context.selectedYear, context.transactions)}
+                                                    />}
                                 />
                                 <Route path = '/create' 
                                     render={() => <Create requestUpdate={context.requestUpdate}/>}

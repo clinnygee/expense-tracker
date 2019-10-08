@@ -37,32 +37,32 @@ class Dashboard extends Component {
         this.setState({totalIncome: totalIncome, totalExpenses: totalExpense});
     }
 
-    // getTotalIncome = () => {
-    //     const totalIncome = this.props.transactions.reduce(transaction => {
-    //         if(transaction.type === 'income'){
-    //             return transaction.amount;
-    //         } else {
-    //             return 0;
-    //         }
-    //     });
+    handleDeleteTransactions = async (transactionId) => {
 
-    //     return totalIncome;
-    // };
+        console.log(JSON.stringify({transaction_id: transactionId}))
+        let token = sessionStorage.getItem('jwt');
 
-    // getTotalExpense = () => {
-    //     const totalExpense = this.props.transactions.reduce(transaction => {
-    //         if(transaction.type === 'expense'){
-    //             console.log(transaction.amount);
-    //             return transaction.amount;
-    //         } else {
-    //             return 0;
-    //         }
-    //     });
+        let response = await fetch('/transactions/delete', {
+            method: 'DELETE',
+            body: JSON.stringify({transaction_id: transactionId}),
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${token}`,
+            }});
 
-    //     console.log(totalExpense);
+            console.log(response);
 
-    //     return totalExpense;
-    // };
+            
+
+            if(response.status === 200){
+                this.props.requestUpdate();
+            }
+
+            
+
+
+        console.log('Delete transaction with Id of: ' +transactionId);
+    }
 
     
 
@@ -84,13 +84,15 @@ class Dashboard extends Component {
             transactions = this.props.transactions.map((transaction) => (
                 <EditableTransaction 
 
-                    key={transaction._id} 
+                    key={transaction._id}
+                    id={transaction._id} 
                     type={transaction.type} 
                     category={transaction.category}
                     date={transaction.date}
                     amount={transaction.amount}
                     description={transaction.description}
-                    
+                    onDeleteTransaction={this.handleDeleteTransactions}
+                    // add a function that is called when the delete button is clicked.
                     
                 />
             ))

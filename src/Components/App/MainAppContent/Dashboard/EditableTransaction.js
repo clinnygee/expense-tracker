@@ -31,6 +31,10 @@ class EditableTransaction extends Component {
         this.setState({open: !this.state.open});
     }
 
+    handleDeleteTransaction = () => {
+        this.props.onDeleteTransaction(this.props.id);
+    }
+
     render() {
 
         const iconStyle = {
@@ -73,7 +77,7 @@ class EditableTransaction extends Component {
                         <div className='dashboard-scrollable-item-open-edit'>
                             <FontAwesomeIcon icon={'edit'} />
                         </div>
-                        <div className='dashboard-scrollable-item-open-delete'>
+                        <div className='dashboard-scrollable-item-open-delete' onClick={this.handleDeleteTransaction}>
                             <FontAwesomeIcon icon={'trash-alt'} />
                         </div>
                     </div> 
@@ -118,7 +122,8 @@ class EditableTransaction extends Component {
 };
 
 EditableTransaction.propTypes = {
-    key: PropTypes.string,
+    
+    id: PropTypes.string,
     category: PropTypes.string,
     amount: PropTypes.number,
     date: PropTypes.string,
