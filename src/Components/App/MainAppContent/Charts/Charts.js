@@ -111,25 +111,57 @@ const ChartRenderer = (props) => {
 
         data = data.map(category => {
             return (
-                {angle: category.amount/sum,  label: category.category}
+                {angle: category.amount/sum,  label: category.category, color: createRandomHexColour()}
             )
         });
         return data;
+    };
+
+    const createRandomHexColour = () => {
+        const literals = ['0', '1', '2', '3', '4', '5', '6', '7', '8','9','A','B','C','D','E','F'];
+
+        let hexColor = ['#'];
+
+        for(let i =0; i< 6; i++){
+            hexColor.push(literals[getRandomInt(0, 16)])
+        };
+
+        return hexColor.join('');
+
+    };
+
+    const getRandomInt = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+
+        return Math.floor(Math.random() * (max-min) + min);
     }
 
     createChartData();
 
     // angle is the % of the chart.
     if(props.category){
-        let myData = [ {angle: 1, radius: 10, label: 'eat pussy'}, {angle: 2, label: 'Super Custom label', subLabel: 'With annotation', radius: 20}, {angle: 5, radius: 5, label: 'Alt Label'}, {angle: 3, radius: 14}, {angle: 5, radius: 12, subLabel: 'Sub Label only', className: 'custom-class'} ];
-        myData = createChartData()
+        
+        let myData = createChartData();
+
+        const chartInformation = myData.map(chartItem => (
+             <ChartInformationItem color={chartItem.color} label={chartItem.label}/>
+        ));
         return(
             <div className='charts-display-container'>
+                <div className='charts-display-header'>
+                    <p>Monthly {props.category} Summary</p>
+                </div>
+                <div className='charts-display-information'>
+                    {chartInformation}
+                </div>
                 <RadialChart
                     data={myData}
                     width={300}
                     height={300}
                     showLabels={true}
+                    colorType={'literal'}
+                    animation
 
                 />
             </div>
@@ -140,6 +172,22 @@ const ChartRenderer = (props) => {
         )
     }
 };
+
+const ChartInformationItem = (props) => {
+
+    let bgColor = {
+        backgroundColor: props.color,
+    }
+
+    return (
+        <div className='charts-display-information-item'>
+            <div className='charts-display-information-item-color' style={bgColor}>
+
+            </div>
+            <p>{props.label}</p>
+        </div>
+    )
+}
 
 
 export default Charts;
