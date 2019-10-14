@@ -178,6 +178,10 @@ app.put('/transactions/edit', withAuth, (req, res) => {
 
 });
 
+app.post('/user/photo', withAuth, (req, res) => {
+
+});
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(parent_dirname, 'build', 'index.html'));
 })
