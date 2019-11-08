@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const secret = 'expense-tracker';
+const secret = (process.env.SECRET || 'expense-tracker');
 
 // Everything that comes through this middlewares req.username will be = to the username. duh
 

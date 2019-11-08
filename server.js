@@ -15,6 +15,10 @@ const withAuth = require('./middleware/auth/auth');
 
 const secret = (process.env.SECRET || 'expense-tracker');
 
+const port = (process.env.PORT || 8080);
+
+require("dotenv").config()
+
 // configuring Multer to use files directory for storing files
 // this is important because later we'll need to access file path
 const storage = multer.diskStorage({
@@ -221,4 +225,4 @@ app.get('*', (req, res) => {
 
 
 
-app.listen(process.env.PORT || 8080) 
+app.listen(port) 
