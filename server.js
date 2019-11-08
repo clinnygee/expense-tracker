@@ -34,7 +34,7 @@ const parent_dirname = process.cwd();
 
 
 
-app.use(express.static(path.join(parent_dirname, 'build')));
+app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.use(bodyParser.urlencoded({extended: false,}));
 
