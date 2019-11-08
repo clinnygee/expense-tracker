@@ -33,7 +33,9 @@ const withAuth = (req, res, next) => {
                 console.log(token);
                 res.status(401).send('Unauthorized: No Logged in user');
             } else {
+                console.log(decoded);
                 req.username = decoded.username;
+                
                 console.log(decoded);
                 next();
             }

@@ -6,6 +6,20 @@ const saltRounds = 10;
 const UserSchema = new mongoose.Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
+    transactions: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Transactions'
+
+        }
+    ],
+    settings: {
+        img: {
+            data: Buffer,
+            contentType: String,
+            path: String,
+        },
+    },
 });
 
 UserSchema.pre('save', function(next)  {

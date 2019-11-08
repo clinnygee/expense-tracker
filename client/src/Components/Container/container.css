@@ -1,0 +1,72 @@
+html {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(#fff,#f0f7f7);
+    font-family: 'Open Sans', sans-serif;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+}
+
+.landing-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #1e56b0;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.landing-content {
+    width: 50%;
+    height: 50%;
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+}
+
+.landing-header {
+    display: grid;
+    align-content: center;
+}
+
+.landing-header-title {
+    font-size: 7em;
+    font-weight: 800;
+    text-align: center;
+    color: #fff;
+}
+
+.landing-navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    color: #fff;
+    text-decoration: underline;
+    font-size: 2em;
+}
+
+.landing-navigation-register {
+    justify-self: end;
+    padding-right: 0.5em;
+    border-right: 0.05em solid #fff;
+    cursor: pointer;
+}
+
+.landing-navigation-about{
+    justify-self: start;
+    padding-left: 0.5em;
+    border-left: 0.05em solid #fff;
+    cursor: pointer;
+}
