@@ -70,7 +70,8 @@ mongoose.connect(mongo_uri, {useNewUrlParser: true}, (err) => {
 app.get('/', (req, res) => {
     console.log(parent_dirname)
     console.log('at the log in page');
-    res.sendFile(path.join('../', 'build', 'index.html'))
+    // res.sendFile(path.join('../', 'build', 'index.html'));
+    res.sendFile(__dirname + '/client/build/index.html')
 });
 
 
