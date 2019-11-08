@@ -16,7 +16,14 @@ class sidebar extends Component {
                     {/* <div className='sidebar-nav-header-icon'>
                         <img src={ThumbnailPicture} alt='user-icon'/>
                     </div> */}
-                    <SidebarUserPhoto />
+                    <UserConsumer>
+                        {
+                            context => (
+                                <SidebarUserPhoto requestUpdate={context.requestUpdate} imageHex={context.imageHex}/>
+                            )
+                        }
+                    </UserConsumer>
+                    
                     <div className='sidebar-nav-header-username'>
                         <p>{this.props.username}</p>
                     </div>
@@ -61,11 +68,42 @@ class SidebarUserPhoto extends Component {
             fileURL: URL.createObjectURL(e.target.files[0]),
             file: e.target.files[0],
         })
-        setTimeout(3000, console.log(this.state.file));
+        
     };
 
-    onFileSubmit = () => {
+    onFileSubmit = async (e) => {
+
+        e.preventDefault();
+
+        const token = sessionStorage.getItem('jwt');
+        console.log(this.state.file);
+
+        const formData = new FormData();
+
+        formData.append('profile-image', this.state.file);
+        
         // send to the server,
+        const res = await fetch('/user/photo', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                
+                'Authorization': `Bearer ${token}`,
+            },
+            body: formData,
+
+        });
+
+        if(res.status === 200){
+            // close modal
+            this.setState({upload: !this.state.upload});
+            // request context to update.
+            this.props.requestUpdate();
+
+
+        }
+
+        console.log(res);
 
         // when the server responds that it works,
         // retrieve user data from the server, so that the image update is displayed.
@@ -78,7 +116,7 @@ class SidebarUserPhoto extends Component {
             return (
                 <React.Fragment>
                     <div className='sidebar-nav-header-icon' onClick={this.toggleOpenForm}>
-                        <img src={ThumbnailPicture} alt='user-icon' onClick={this.toggleOpenForm}/>
+                        <img src={this.props.imageHex != null ? arrayBufferToBase64(this.props.imageHex): {ThumbnailPicture}} alt='user-icon' onClick={this.toggleOpenForm}/>
                     </div>
                     <div className='modal-photo-upload'>
                         <div className='modal-photo-upload-content'>
@@ -92,7 +130,7 @@ class SidebarUserPhoto extends Component {
                                     </div>
                                     <input type='file' onChange={this.handleFileChange}>
                                     </input>
-                                    <input type='submit' value='Upload' className='btn btn-primary btn-lg'/>
+                                    <input type='submit' value='Upload' className='btn btn-primary btn-lg' onClick={this.onFileSubmit}/>
                                 </form>
                             </div>
                         </div>
@@ -104,12 +142,20 @@ class SidebarUserPhoto extends Component {
         } else {
             return (
                 <div className='sidebar-nav-header-icon' onClick={this.toggleOpenForm}>
-                    <img src={ThumbnailPicture} alt='user-icon' onClick={this.toggleOpenForm}/>
+                    <img src={this.props.imageHex != null ? arrayBufferToBase64(this.props.imageHex): {ThumbnailPicture}} alt='user-icon' onClick={this.toggleOpenForm}/>
                 </div>
             )
         }
         
     }
-}
+};
+
+const arrayBufferToBase64 = (buffer) => {
+    const base64flag =  'data:image/jpeg;base64,';
+    var binary = '';
+    var bytes = [].slice.call(new Uint8Array(buffer));
+    bytes.forEach((b) => binary += String.fromCharCode(b));
+    return base64flag + window.btoa(binary);
+};
 
 export default sidebar;

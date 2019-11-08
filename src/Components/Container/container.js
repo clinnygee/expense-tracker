@@ -9,7 +9,7 @@ class Container extends Component {
 
     state = {
         
-        
+        logIn: false,
         loggedIn: false,
         token: null,
     }
@@ -82,6 +82,10 @@ class Container extends Component {
             }
             
         })
+    };
+
+    handleRegisterPageRequest = () => {
+        this.setState({logIn: true});
     }
 
     componentDidMount(){
@@ -109,7 +113,7 @@ class Container extends Component {
                 </div>
                 // <Redirect to='/dashboard' />
             )
-        } else {
+        } else if (this.state.logIn){
             return (
                 <div className='app'>
                     <UserConsumer>
@@ -131,9 +135,39 @@ class Container extends Component {
                 </div>
                 
             )
+        } else {
+            return (
+                <div className='app'>
+                    <Landing onRegisterPageRequest={this.handleRegisterPageRequest}/>
+                </div>
+                
+            )
         }
         
     }
 };
+
+const Landing = (props) => {
+
+    return (
+        <div className='landing-container'>
+            <div className='landing-content'>
+                <div className='landing-header'>
+                    <p className='landing-header-title'>
+                        Budget Tracker
+                    </p>
+                </div>
+                <div className='landing-navigation'>
+                    <div className='landing-navigation-register' onClick={props.onRegisterPageRequest}>
+                        <p>Log In / Register</p>
+                    </div>
+                    <div className='landing-navigation-about'>
+                        <p>About</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 export default Container;

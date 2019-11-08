@@ -13,6 +13,13 @@ const UserSchema = new mongoose.Schema({
 
         }
     ],
+    settings: {
+        img: {
+            data: Buffer,
+            contentType: String,
+            path: String,
+        },
+    },
 });
 
 UserSchema.pre('save', function(next)  {

@@ -5,12 +5,26 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
+const multer = require('multer');
+
+const fs = require('fs');
 
 const User = require('./models/User/User');
 const Transactions = require('./models/User/Transactions')
 const withAuth = require('./middleware/auth/auth');
 
 const secret = 'expense-tracker';
+
+// configuring Multer to use files directory for storing files
+// this is important because later we'll need to access file path
+const storage = multer.diskStorage({
+    destination: './Server/files',
+    filename(req, file, cb) {
+      cb(null, `${new Date()}-${file.originalname}`);
+    },
+  });
+
+const upload = multer({storage});
 
 const parent_dirname = process.cwd();
 
@@ -23,6 +37,11 @@ app.use(bodyParser.urlencoded({extended: false,}));
 app.use(cookieParser());
 
 app.use(bodyParser.json());
+
+// app.use(multer({dest: './uploads',
+//     rename: function(fieldname, filename){
+//         return filename;
+//     }}));
 
 const mongo_uri = 'mongodb://localhost/expense-tracker';
 
@@ -177,8 +196,22 @@ app.put('/transactions/edit', withAuth, (req, res) => {
     Transactions.findByIdAndDelete(req.body)
 
 });
+// will receive uploaded user photo.
+app.post('/user/photo', withAuth, upload.single('profile-image'), (req, res) => {
 
-app.post('/user/photo', withAuth, (req, res) => {
+
+    const file = req.file;
+
+    console.log(file);
+
+    User.findOne({username: req.username}).then(user => {
+        // Stores the image under Server/files/path
+        user.settings.img.path = file.path;
+        user.settings.img.contentType = file.mimetype;
+        user.settings.img.data = fs.readFileSync(file.path)
+
+        user.save();
+    }).then(res.sendStatus(200));
 
 });
 

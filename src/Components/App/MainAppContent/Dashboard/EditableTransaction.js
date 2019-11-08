@@ -38,7 +38,7 @@ class EditableTransaction extends Component {
     render() {
 
         const iconStyle = {
-            backgroundColor: this.props.type === 'expense' ? '#eb5960' : '#6ee05a'
+            color: this.props.type === 'expense' ? '#eb5960' : '#6ee05a'
         };
 
         

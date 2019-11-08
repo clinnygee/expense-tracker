@@ -5,6 +5,7 @@ const UserContext = createContext({
     username: '',
     transactions: [],
     _id: '',
+    imageHex: '',
     authenticated: false,
     jwt: '',
     updateUserData: () => {},
@@ -30,7 +31,7 @@ export class UserProvider extends React.Component {
             return new Date(b.date) - new Date(a.date);
         })
         console.log(newUserData.transactions);
-        this.setState({username: newUserData.username, transactions: newUserData.transactions, _id: newUserData._id})
+        this.setState({username: newUserData.username, transactions: newUserData.transactions, _id: newUserData._id, imageHex: newUserData.settings.img.data.data})
     };
     // When this is called, call the function to fetch user data.
     logInSuccess = () => {
@@ -87,6 +88,7 @@ export class UserProvider extends React.Component {
         username: '',
         transactions: [],
         _id: '',
+        imageHex: null,
         selectedMonth: new Date().getMonth(),
         selectedYear: new Date().getFullYear(),
         updateUserData: this.updateUserData,

@@ -107,12 +107,12 @@
 }
 
 .dashboard-scrollable-item-bottom-icon {
-    font-size: 20px;
+    font-size: 2em;
     justify-self: center;
     width: 50%;
     height: 100%;
     clip-path: circle(50%);
-    background-color: yellow;
+    /* background-color: yellow; */
     color: #fff;
 }
 
@@ -147,8 +147,8 @@
 
 .dashboard-scrollable-item-open-edit {
     width: 50px;
-    background-color: blue;
-    color: #fff;
+    /* background-color: blue; */
+    color: blue;
     border-radius: 10px;
 }
 
@@ -159,8 +159,8 @@
 
 .dashboard-scrollable-item-open-delete {
     width: 50px;
-    background-color: red;
-    color: #fff;
+    /* background-color: red; */
+    color: red;
     border-radius: 10px;
     
 }
