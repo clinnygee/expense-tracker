@@ -43,7 +43,7 @@ app.use(bodyParser.json());
 //         return filename;
 //     }}));
 
-const mongo_uri = 'mongodb://localhost/expense-tracker';
+const mongo_uri = (process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker');
 
 mongoose.connect(mongo_uri, {useNewUrlParser: true}, (err) => {
     if(err){

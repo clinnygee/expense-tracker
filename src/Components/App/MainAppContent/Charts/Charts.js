@@ -114,7 +114,7 @@ const ChartRenderer = (props) => {
                 {angle: category.amount/sum,  label: category.category, color: createRandomHexColour()}
             )
         });
-        return data;
+        return {data: data, sum: sum}
     };
 
     const createRandomHexColour = () => {
@@ -144,19 +144,22 @@ const ChartRenderer = (props) => {
         
         let myData = createChartData();
 
-        const chartInformation = myData.map(chartItem => (
-             <ChartInformationItem color={chartItem.color} label={chartItem.label}/>
+        console.log(myData.data)
+
+        const chartInformation = myData.data.map(chartItem => (
+             <ChartInformationItem color={chartItem.color} label={chartItem.label} percent={Math.round(chartItem.angle * 100 * 10)/10}/>
         ));
         return(
             <div className='charts-display-container'>
                 <div className='charts-display-header'>
                     <p>Monthly {props.category} Summary</p>
+                    <p>Total {props.category}: ${myData.sum}</p>
                 </div>
                 <div className='charts-display-information'>
                     {chartInformation}
                 </div>
                 <RadialChart
-                    data={myData}
+                    data={myData.data}
                     width={300}
                     height={300}
                     showLabels={true}
@@ -173,6 +176,12 @@ const ChartRenderer = (props) => {
     }
 };
 
+const capitalize = (str) => {
+    if (typeof str !== 'string') return '';
+
+    else return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const ChartInformationItem = (props) => {
 
     let bgColor = {
@@ -184,7 +193,7 @@ const ChartInformationItem = (props) => {
             <div className='charts-display-information-item-color' style={bgColor}>
 
             </div>
-            <p>{props.label}</p>
+            <p>{capitalize(props.label)}, {props.percent}%</p>
         </div>
     )
 }
