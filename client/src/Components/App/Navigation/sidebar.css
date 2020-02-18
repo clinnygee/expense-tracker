@@ -119,3 +119,76 @@
     grid-template-rows: 6fr 1fr 1fr;
 }
 
+.nav-open {
+    height: 100vh !important;
+    animation-name: grow-open;
+    animation-duration: 1.5s;
+    background-color: #ffcf99;
+    z-index: 999;
+}
+
+.mobile-nav {
+    
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 49px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row-reverse;
+    flex-direction: column;
+    /* // background-color: #ffcf99; */
+    
+    align-items: flex-end;
+    padding-top: 10px;
+    /* z-index: 100; */
+
+} 
+
+    .hamburger {
+        margin-right: 20px;
+      justify-self: flex-end;
+      font-size: 1.3em;  
+      color: #91240c;
+      
+    }
+    .link {
+        width: 100%;
+        padding: 4px 5px 4px 20px;
+        font-weight: bold;
+        background-color: lighten(#ffcf99, 3);
+        color: #fff;
+    }
+
+    .active {
+        color: #91240c;
+        animation-name: active;
+        animation-duration: 1s;
+        /* // transform: scale(1.1); */
+    }
+    /* @keyframes active {
+        0%{color: lighten($color: #91240c, $amount: 100%)}
+        100%{color: #91240c; 
+            /* // transform: scale(1.1); */
+        /* } */
+    
+;
+
+.nav-open {
+    height: 100vh !important;
+    animation-name: grow-open;
+    animation-duration: 1.5s;
+    background-color: #ffcf99;
+}
+
+@keyframes grow-open {
+    0%{
+        background-color: lighten(#ffcf99, 75);
+        height: 49px;
+    }
+    100% {
+        background-color: #ffcf99;
+        height: 100vh;
+    }
+}
+

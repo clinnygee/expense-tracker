@@ -31,7 +31,9 @@ export class UserProvider extends React.Component {
             return new Date(b.date) - new Date(a.date);
         })
         console.log(newUserData.transactions);
-        this.setState({username: newUserData.username, transactions: newUserData.transactions, _id: newUserData._id, imageHex: newUserData.settings.img.data.data})
+        console.log(newUserData.settings);
+        // : null for imageHex needs to be changed to the default Hex for the default image
+        this.setState({username: newUserData.username, transactions: newUserData.transactions, _id: newUserData._id, imageHex: newUserData.settings ? newUserData.settings.img.data.data : null})
     };
     // When this is called, call the function to fetch user data.
     logInSuccess = () => {
@@ -63,6 +65,7 @@ export class UserProvider extends React.Component {
         }).then(response => {
             return response.json();
         }).then(parsedJson => {
+            // this does not always return an image, if the user hasnt stored an image, and will break if they dont have one
             console.log(parsedJson);
             this.updateUserData(parsedJson);
             // this.setTransactionData(parsedJson.transactions);

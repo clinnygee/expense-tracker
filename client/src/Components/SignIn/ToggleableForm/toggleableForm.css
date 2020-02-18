@@ -1,3 +1,9 @@
+@media (max-width: 768px){
+    .toggleable-form{
+        min-width: 90% !important;
+    }
+}
+
 .toggleable-form {
     height: 100%;
     /* background-color: red; */

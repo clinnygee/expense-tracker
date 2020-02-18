@@ -55,6 +55,20 @@ body {
     color: #fff;
     text-decoration: underline;
     font-size: 2em;
+
+    
+}
+@media (max-width: 768px) {
+    .landing-content{
+        height: 200px;
+    }
+    .landing-header-title{
+        font-size: 2em;
+        line-height: 1.5em;
+    }
+    .landing-navigation {
+        font-size: 1.5em;
+    }
 }
 
 .landing-navigation-register {
