@@ -121,9 +121,9 @@
 
 .nav-open {
     height: 100vh !important;
-    animation-name: grow-open;
-    animation-duration: 1.5s;
-    background-color: #ffcf99;
+    animation-name: grow-open !important;
+    animation-duration: 1.5s !important;
+    background-color: #ffcf99 !important;
     z-index: 999;
 }
 
@@ -174,12 +174,7 @@
     
 ;
 
-.nav-open {
-    height: 100vh !important;
-    animation-name: grow-open;
-    animation-duration: 1.5s;
-    background-color: #ffcf99;
-}
+
 
 @keyframes grow-open {
     0%{
