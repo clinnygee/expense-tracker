@@ -107,11 +107,11 @@
 }
 
 .dashboard-scrollable-item-bottom-icon {
-    font-size: 2em;
+    font-size: 1.5em;
     justify-self: center;
     width: 50%;
     height: 100%;
-    clip-path: circle(50%);
+    /* clip-path: circle(50%); */
     /* background-color: yellow; */
     color: #fff;
 }

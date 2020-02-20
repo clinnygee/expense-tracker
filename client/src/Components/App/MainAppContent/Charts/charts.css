@@ -33,6 +33,22 @@
     .charts-display-header{
         font-size: 1.3em !important;
     }
+
+    .charts-display-information{
+        
+        display: flex !important;
+        justify-items: center !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .charts-display-information-item {
+        height: 40px;
+        width: 150px !important;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        align-items: center;
+    }
 }
 
 .charts-display-container{
