@@ -163,13 +163,13 @@
       color: #91240c;
       
     }
-    .link {
+    /* .link {
         width: 100%;
         padding: 4px 5px 4px 20px;
         font-weight: bold;
         background-color: lighten(#ffcf99, 3);
         color: #fff;
-    }
+    } */
 
     .active {
         color: #91240c;
