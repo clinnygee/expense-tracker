@@ -11,7 +11,7 @@ import './charts.css';
 class Charts extends Component {
 
     state = {
-        category: null,
+        category: 'Expense',
     }
 
     handleCategorySelect = (e) => {

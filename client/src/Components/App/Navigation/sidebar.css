@@ -119,6 +119,17 @@
     grid-template-rows: 6fr 1fr 1fr;
 }
 
+@keyframes grow-open {
+    0%{
+        background-color: lighten(#ffcf99, 75);
+        height: 49px;
+    }
+    100% {
+        background-color: #ffcf99;
+        height: 100vh;
+    }
+}
+
 .nav-open {
     height: 100vh !important;
     animation-name: grow-open !important;
@@ -176,14 +187,5 @@
 
 
 
-@keyframes grow-open {
-    0%{
-        background-color: lighten(#ffcf99, 75);
-        height: 49px;
-    }
-    100% {
-        background-color: #ffcf99;
-        height: 100vh;
-    }
-}
+
 

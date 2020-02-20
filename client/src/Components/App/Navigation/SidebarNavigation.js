@@ -31,7 +31,7 @@ class SidebarNavigation extends Component {
                         </div>
                     </div>
                 </Link>
-                <div className='sidebar-nav-links-scrollable-link'>
+                {/* <div className='sidebar-nav-links-scrollable-link'>
                     <div>
                         <FontAwesomeIcon icon={faBars} />
                     </div>
@@ -54,7 +54,7 @@ class SidebarNavigation extends Component {
                     <div>
                         Settings
                     </div>
-                </div>
+                </div> */}
                 <div className='sidebar-nav-links-scrollable-link' onClick={this.props.signOut}>
                     <div>
                         <FontAwesomeIcon icon = {faSignOutAlt}/>

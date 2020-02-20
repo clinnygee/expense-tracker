@@ -24,6 +24,17 @@
     cursor: pointer;
 }
 
+@media (max-width: 768px){
+    .charts-display-container{
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    .charts-display-header{
+        font-size: 1.3em !important;
+    }
+}
+
 .charts-display-container{
     height: 85%;
     width: 100%;
