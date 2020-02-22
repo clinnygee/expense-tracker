@@ -36,35 +36,7 @@ class Calender extends Component {
                         month={months[this.props.selectedMonth]}
                         year={this.props.selectedYear}
                         />
-                        {/* <div className='calender-month-selector'>
-                            <div className='calender-month-selector-months'>
-                                <div className='calender-month-selector-year'>
-                                    <div>
-                                        {"<"}
-                                    </div>
-                                    <div>
-                                        {this.state.selectedYear - 1}
-                                    </div>
-                                    <div>
-                                        {">"}
-                                    </div>
-                                </div>
-                                <div>Jan</div>
-                                <div>Feb</div>
-                                <div>Mar</div>
-                                <div>Apr</div>
-                                <div>May</div>
-                                <div>Jun</div>
-                                <div>Jul</div>
-                                <div>Aug</div>
-                                <div>Sep</div>
-                                <div>Oct</div>
-                                <div>Nov</div>
-                                <div>Dec</div>
-
-                            </div>
-                            
-                        </div> */}
+                        
                         <MonthSelector year={this.state.selectedYear} onSelectMonthAndYear={this.handleSelectMonthAndYear}/>
 
                     </div>

@@ -10,7 +10,7 @@ const CalenderToggler = (props) => {
                 <div className='calender-toggler-date'>
                     {props.month}. {props.year}
                 </div>
-                <div>
+                <div className='calender-toggler-button'>
                     <FontAwesomeIcon icon={props.open ? 'sort-up' : 'sort-down'}/>
                 </div>
             </div>

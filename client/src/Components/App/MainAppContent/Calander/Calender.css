@@ -16,6 +16,7 @@
     justify-items: center;
     display: grid;
     z-index: 200;
+    padding-top: 20px;
 }
 
 .calender-toggler {
@@ -25,6 +26,10 @@
     display: grid;
     align-items: center;
     text-align: center;
+}
+
+.calender-toggler-button {
+    height: 40px;
 }
 
 .calender-toggler-date {
