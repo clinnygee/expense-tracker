@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
 import ToggleableForm from '../SignIn/ToggleableForm/ToggleableForm';
 import MainAppContainer from '../App/MainAppContainer'
 import {Redirect} from 'react-router-dom';
@@ -149,7 +149,15 @@ class Container extends Component {
 
 const Landing = (props) => {
 
+
+    const [open, setOpen] = useState(false);
+
+    const handleModalToggle = () => {
+        setOpen(!open);
+    }
+
     return (
+        
         <div className='landing-container'>
             <div className='landing-content'>
                 <div className='landing-header'>
@@ -162,12 +170,50 @@ const Landing = (props) => {
                         <p>Log In / Register</p>
                     </div>
                     <div className='landing-navigation-about'>
-                        <p>About</p>
+                        <p onClick={handleModalToggle}>About</p>
                     </div>
                 </div>
             </div>
+            {open && <ModalAbout closeModal={handleModalToggle} content={aboutText}/>  }
         </div>
     )
-}
+};
+
+const aboutText = {
+    headers: ['An Expense Tracker by CLINNYGEE'],
+    text: ['This expense tracker is built using react, node and express. ', 
+    'You can filter your expenses and income by month, add income or expenses by category, and view summarys in graph format.',
+    'The full code is available on github at https://github.com/clinnygee/expense-tracker',
+    'Also, check me out on LinkedIn at https://www.linkedin.com/in/clinton-gillespie-128624175/']
+};
+
+const ModalAbout = (props) => {
+
+    console.log(props.content.header)
+    
+    return (
+
+        
+        <div className='modal-container'>
+            <div className='modal-content'>
+                <div className='modal-button-container'>
+                    <div className='modal-close' onClick={props.closeModal}>
+                        <p>X</p>
+                    </div>
+                </div>
+                {props.content.headers.map((header) => (
+                    <h1 className='about-header'>
+                        {header}
+                    </h1>
+                ))}
+                {props.content.text.map(text => (
+                    <p>
+                        {text}
+                    </p>
+                ))}
+            </div>
+        </div>
+    )
+};
 
 export default Container;
