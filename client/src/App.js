@@ -9,6 +9,8 @@ import {UserConsumer} from './user-context';
 
 library.add(faUtensils, faHome, faCar, faGamepad, faFileInvoiceDollar, faPhoneSquare, faNetworkWired, faGlassCheers, faTv, faStar, faWallet, faChartLine, faGift, faUndo, faMoneyCheckAlt, faEdit, faTrashAlt, faSortDown, faSortUp);
 
+
+// in here should be a <Switch /> that chooses whether to render '/', '/create' etc.
 function App() {
   return (
       <div>
