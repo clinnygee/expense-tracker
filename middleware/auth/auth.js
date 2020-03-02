@@ -26,6 +26,8 @@ const withAuth = (req, res, next) => {
 
     if(!token) {
         res.status(401).send('Unauthorized: No Logged in user');
+
+        res.redirect('/');
     } else {
         console.log('token recieved');
         jwt.verify(token, secret, function(err, decoded){
