@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Summary from './Summary/Summary';
+import Summary from './Summary';
 import CreateButton from './CreateButton';
 import {Link} from 'react-router-dom';
 import EditableTransaction from './EditableTransaction';

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './sidebar.css'
-import ThumbnailPicture from '../../../img/default-icon.jpeg';
-import NoImage from '../../../img/no-image.jpeg'
+
+import NoImage from '../assets/no-image.jpeg'
 import SidebarNavigation from './SidebarNavigation';
-import {UserConsumer} from '../../../user-context';
+import {UserConsumer} from '../../user-context';
 import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
@@ -12,15 +12,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 class sidebar extends Component {
 
     
-    // constructor(){
-    //     super()
-
-    //     const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-
-    //     console.log(width);
-
-    //     width <= 768 ? this.setState({mobileView: true}) : this.setState({mobileView: false});
-    // }
+    
     state = {
         mobileView : null, 
     }

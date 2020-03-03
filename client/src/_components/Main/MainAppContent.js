@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Switch, Route} from 'react-router-dom';
 import './MainAppContent.css';
-import Dashboard from './Dashboard/Dashboard';
-import Charts from './Charts/Charts'
-import Calender from './Calander/Calender';
-import Create from './Create/Create'
+import Dashboard from '../Routes/Dashboard';
+import Charts from '../Routes/Charts/Charts'
+import Calender from '../Calander';
+import Create from '../Routes/Create'
 import Picker from 'react-month-picker';
-import {UserConsumer} from '../../../user-context';
+import {UserConsumer} from '../../user-context';
 
 class MainAppContent extends Component {
 

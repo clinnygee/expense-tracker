@@ -1,9 +1,9 @@
 import React, {Component, useState} from 'react'
-import ToggleableForm from '../SignIn/ToggleableForm/ToggleableForm';
-import MainAppContainer from '../App/MainAppContainer'
+import ToggleableForm from '../../ToggleableForm/ToggleableForm';
+import MainAppContainer from '../../Main'
 import {Redirect} from 'react-router-dom';
-import './container.css';
-import {UserConsumer} from '../../user-context';
+import './landing.css';
+import {UserConsumer} from '../../../user-context';
 
 class Container extends Component {
 
