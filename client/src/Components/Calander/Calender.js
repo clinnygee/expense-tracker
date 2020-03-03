@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Calender.css';
-import Picker from 'react-month-picker'
 import CalenderToggler from './CalenderToggler';
 import MonthSelector from './MonthSelector'
 

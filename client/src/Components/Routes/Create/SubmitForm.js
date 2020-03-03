@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
-import Icon from './Icon';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class SubmitForm extends Component {

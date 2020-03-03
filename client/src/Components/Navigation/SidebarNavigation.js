@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faColumns, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 import {faChartLine} from '@fortawesome/free-solid-svg-icons';
-import {faBell} from '@fortawesome/free-solid-svg-icons';
-import {faCogs} from '@fortawesome/free-solid-svg-icons';
-import {faBars} from '@fortawesome/free-solid-svg-icons';
+// import {faBell} from '@fortawesome/free-solid-svg-icons';
+// import {faCogs} from '@fortawesome/free-solid-svg-icons';
+// import {faBars} from '@fortawesome/free-solid-svg-icons';
 import {Link} from 'react-router-dom';
 
 class SidebarNavigation extends Component {
@@ -55,14 +55,17 @@ class SidebarNavigation extends Component {
                         Settings
                     </div>
                 </div> */}
-                <div className='sidebar-nav-links-scrollable-link' onClick={this.props.signOut}>
-                    <div>
-                        <FontAwesomeIcon icon = {faSignOutAlt}/>
+                <Link to='/'>
+                    <div className='sidebar-nav-links-scrollable-link' onClick={this.props.signOut}>
+                        <div>
+                            <FontAwesomeIcon icon = {faSignOutAlt}/>
+                        </div>
+                        <div>
+                            Logout
+                        </div>
                     </div>
-                    <div>
-                        Logout
-                    </div>
-                </div>
+                </Link>
+                
             </div>
         );
     }

@@ -24,11 +24,21 @@ class sidebar extends Component {
 
         width <= 768 ? mobile = true : mobile = false;
 
-        return mobile;
+        this.setState({mobileView: mobile});
+
+        
      }
 
      componentWillMount(){
-         this.setState({mobileView: this.checkMobile()});
+        
+        this.checkMobile();
+
+         window.addEventListener('resize', this.checkMobile);
+     }
+
+     componentWillUnmount(){
+         console.log('removed mobile listener')
+         window.removeEventListener('resize', this.checkMobile);
      }
 
     
@@ -38,9 +48,9 @@ class sidebar extends Component {
     render() {
         // Set up react router, i think every link should be included in a <Link /> which references one of the different options to display
         // in the content display
-        const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+        
 
-        console.log(this.state.mobileView)
+       
 
         
         if(this.state.mobileView){

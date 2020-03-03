@@ -5,7 +5,6 @@ import Dashboard from '../Routes/Dashboard';
 import Charts from '../Routes/Charts/Charts'
 import Calender from '../Calander';
 import Create from '../Routes/Create'
-import Picker from 'react-month-picker';
 import {UserConsumer} from '../../user-context';
 
 class MainAppContent extends Component {

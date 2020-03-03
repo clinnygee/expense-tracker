@@ -1,7 +1,6 @@
 import React, {Component, useState} from 'react'
 import ToggleableForm from '../../ToggleableForm/ToggleableForm';
 import MainAppContainer from '../../Main'
-import {Redirect} from 'react-router-dom';
 import './landing.css';
 import {UserConsumer} from '../../../user-context';
 
@@ -89,9 +88,9 @@ class Container extends Component {
     }
 
     componentDidMount(){
-        
-        this.authenticateUser();
-        // check if the user is storing a valid jwt.
+        this.props.authenticateUser();
+        // this.authenticateUser();
+        // // check if the user is storing a valid jwt.
     };
 
     render(){

@@ -14,6 +14,8 @@ class MainAppContainer extends Component {
 
     componentDidMount =  () => {
         
+        // Should check if there is a jwt in session storage.
+        // If there is, should wait for server response before rendering anything.
 
     };
 
@@ -33,18 +35,16 @@ class MainAppContainer extends Component {
         }).then(parsedJson => {
             console.log(parsedJson);
             this.setUserData(parsedJson);
-            // this.setTransactionData(parsedJson.transactions);
+            
         })
     };
 
     setUserData = (userData) => {
         this.props.updateUserData(userData);
-        // this.setState({username: userData.username});
+        
     };
 
-    // setTransactionData = (transactionData) => {
-    //     this.setState({transactions: transactionData});
-    // };
+   
 
     render() {
 

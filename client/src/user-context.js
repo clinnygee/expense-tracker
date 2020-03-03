@@ -1,6 +1,7 @@
 import React, {createContext} from 'react';
 
 
+
 const UserContext = createContext({
     username: '',
     transactions: [],
@@ -8,6 +9,7 @@ const UserContext = createContext({
     imageHex: '',
     authenticated: false,
     jwt: '',
+    authenticateUser: () => {},
     updateUserData: () => {},
     logInSuccess: () => {},
     signOut: () => {},
@@ -23,6 +25,29 @@ const UserContext = createContext({
 export class UserProvider extends React.Component {
 
     
+    authenticateUser = () => {
+        let token = sessionStorage.getItem('jwt');
+
+        this.setJwt(token);
+
+        if(token){
+            fetch('/checkToken', {
+                method: 'GET',
+                headers : {
+                    'content-type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                }
+            }).then(res => {
+                if(res.status === 200){
+                    this.setJwt(token);
+                    this.logInSuccess()
+                } else{
+                    sessionStorage.removeItem('jwt')
+                }
+                
+            })
+        }
+    }
     // Change this to be a fetch call, so it can be called when a refresh is required when data is changed on the server, 
     // and when the user successfully logs in
     updateUserData = newUserData => {
@@ -51,6 +76,8 @@ export class UserProvider extends React.Component {
     signOut = () => {
         this.setState({authenticated: false});
         sessionStorage.removeItem('jwt');
+
+        
     };
 
     getUserData = () => {
@@ -94,6 +121,7 @@ export class UserProvider extends React.Component {
         imageHex: null,
         selectedMonth: new Date().getMonth(),
         selectedYear: new Date().getFullYear(),
+        authenticateUser: this.authenticateUser,
         updateUserData: this.updateUserData,
         logInSuccess: this.logInSuccess,
         setJwt: this.setJwt,
