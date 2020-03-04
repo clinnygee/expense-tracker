@@ -46,13 +46,7 @@ class sidebar extends Component {
     
 
     render() {
-        // Set up react router, i think every link should be included in a <Link /> which references one of the different options to display
-        // in the content display
-        
-
-       
-
-        
+                
         if(this.state.mobileView){
         return (
             <MobileSidebar />

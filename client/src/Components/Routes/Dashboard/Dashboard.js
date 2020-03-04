@@ -67,12 +67,10 @@ class Dashboard extends Component {
     
 
     componentDidMount = () => {
-        // this.setTotalIncomeAndExpense();
+        
     }
 
-    componentWillReceiveProps = () => {
-        // this.setTotalIncomeAndExpense();
-    }
+    
 
     render() {
 

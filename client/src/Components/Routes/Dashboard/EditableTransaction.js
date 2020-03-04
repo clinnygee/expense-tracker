@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {capitalize} from '../../../Helpers';
 
 class EditableTransaction extends Component {
 
@@ -64,7 +65,7 @@ class EditableTransaction extends Component {
 
                         </div>
                         <div className='dashboard-scrollable-item-bottom-category'>
-                            <p>{this.props.category}: {this.props.description}</p>
+                            <p>{capitalize(this.props.category)}: {capitalize(this.props.description)}</p>
                         </div>
                         <div className='dashboard-scrollable-item-bottom-amount'>
                             <p>
@@ -102,7 +103,7 @@ class EditableTransaction extends Component {
                         
                     </div>
                     <div className='dashboard-scrollable-item-bottom-category'>
-                        <p>{this.props.category}: {this.props.description}</p>
+                        <p>{capitalize(this.props.category)}: {capitalize(this.props.description)}</p>
                     </div>
                     <div className='dashboard-scrollable-item-bottom-amount'>
                         <p>
@@ -111,11 +112,7 @@ class EditableTransaction extends Component {
                     </div>
                     
                 </div>       
-                {/* {this.props.key}
-                {this.props.category}
-                {this.props.amount}                
-                {this.props.description}
-                {this.props.type} */}
+                
             </div>
         )};
     }

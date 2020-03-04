@@ -151,7 +151,7 @@ app.get('/dashboard', withAuth, (req, res) => {
     })
 
     
-})
+});
 
 app.post('/create', withAuth, (req, res) => {
     console.log('in /create')
@@ -221,8 +221,8 @@ app.post('/user/photo', withAuth, upload.single('profile-image'), (req, res) => 
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(parent_dirname, 'build', 'index.html'));
-})
+    res.sendFile(__dirname + '/client/build/index.html');
+});
 
 
 

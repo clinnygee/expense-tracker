@@ -49,7 +49,7 @@ class Summary extends Component {
                     <div className="summary-container-totals">
                         <div>
                             <p className='summary-container-totals-word'>Balance</p>
-                            <p className='summary-container-totals-number'>{totalIncomeAndExpense.totalIncome - totalIncomeAndExpense.totalExpense}</p>
+                            <p className='summary-container-totals-number'>{(totalIncomeAndExpense.totalIncome - totalIncomeAndExpense.totalExpense).toFixed(2)}</p>
                         </div>                        
                     </div>
                 </div>

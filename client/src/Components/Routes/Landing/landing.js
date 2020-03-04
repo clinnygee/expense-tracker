@@ -95,6 +95,7 @@ class Container extends Component {
 
     render(){
 
+        // this.props.authenticateUser();
         console.log(this.props)
 
         
@@ -104,7 +105,7 @@ class Container extends Component {
                 <div className='app'>
                     <UserConsumer>
                         {context => (
-                            <MainAppContainer default='/dashboard' updateUserData={context.updateUserData}/>
+                            <MainAppContainer  updateUserData={context.updateUserData}/>
                         )}
                         
                     </UserConsumer>

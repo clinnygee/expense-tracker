@@ -14,9 +14,6 @@ class MainAppContainer extends Component {
 
     componentDidMount =  () => {
         
-        // Should check if there is a jwt in session storage.
-        // If there is, should wait for server response before rendering anything.
-
     };
 
     
@@ -55,7 +52,7 @@ class MainAppContainer extends Component {
                     <div className='main-app'>
                         <SideBar username={context.username}/>
                         <div className='main-app-container'>
-                            <MainAppContent default={this.props.default} transactions={[...context.transactions]}/>
+                            <MainAppContent transactions={[...context.transactions]}/>
                         </div>
                     </div>
                 )}
