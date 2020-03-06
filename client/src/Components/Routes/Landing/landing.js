@@ -4,6 +4,7 @@ import MainAppContainer from '../../Main'
 import './landing.css';
 import {UserConsumer} from '../../../user-context';
 import apiCall from '../../../API_CALLS';
+import {LoadingSymbol} from '../../ReusableComponents'
 
 class Container extends Component {
 
@@ -48,7 +49,9 @@ class Container extends Component {
     // refactor these to use apiCall
     handleSignUpForm = (credentials) => {
         console.log(credentials);
-        return apiCall('/register', 'POST', credentials).then(res => console.log(res));
+        return apiCall('/register', 'POST', credentials).then(res => {
+            if (res.status === 200) this.handleLogInForm(credentials);
+        });
     };
 
     
@@ -80,26 +83,6 @@ class Container extends Component {
         this.props.setJwt(res.token);
         
     };
-
-    // authenticateUser = () => {
-        
-    //     let token = sessionStorage.getItem('jwt');
-
-        
-    //     fetch('/checkToken', {
-    //         method: 'GET',
-    //         headers : {
-    //             'content-type': 'application/json',
-    //             'Authorization': `Bearer ${token}`,
-    //         }
-    //     }).then(res => {
-    //         if(res.status === 200){
-    //             this.props.setJwt(token);
-    //             this.props.logInSuccess()
-    //         }
-            
-    //     })
-    // };
 
     handleRegisterPageRequest = () => {
         this.setState({logIn: true});
@@ -153,7 +136,9 @@ class Container extends Component {
             )
         } else if (this.state.authenticating) {
             return (
-                <div>AUTHENTICATING</div>
+                <div className='app'>
+                    <LoadingSymbol />
+                </div>
             )
         } else if (this.state.logIn){
             return (
