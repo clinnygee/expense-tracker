@@ -8,7 +8,6 @@ const UserContext = createContext({
     _id: '',
     imageHex: '',
     authenticated: false,
-    authenticating: false,
     jwt: '',
     authenticateUser: () => {},
     updateUserData: () => {},
@@ -30,7 +29,7 @@ export class UserProvider extends React.Component {
 
         console.log('in context authenticateUser')
 
-        this.setState({authenticating: true});
+        
         
         let token = sessionStorage.getItem('jwt');
 
@@ -103,7 +102,7 @@ export class UserProvider extends React.Component {
             // this does not always return an image, if the user hasnt stored an image, and will break if they dont have one
             console.log(parsedJson);
             this.updateUserData(parsedJson);
-            // this.setTransactionData(parsedJson.transactions);
+            
         })
     };
 
@@ -128,7 +127,6 @@ export class UserProvider extends React.Component {
         _id: '',
         imageHex: null,
         authenticated: false,
-        authenticating: false,
         selectedMonth: new Date().getMonth(),
         selectedYear: new Date().getFullYear(),
         authenticateUser: this.authenticateUser,

@@ -12,24 +12,41 @@ class Container extends Component {
 
         let token = sessionStorage.getItem('jwt');
         if(token && !this.props.authenticated){
+
+            this.state = {
+        
+                logIn: false,
+                loggedIn: false,
+                token: token,
+                authenticating: true,
+            }
             console.log('there is a token, but the user is not authenticated')
-            this.setState({authenticating: true});
+            // this.setState({authenticating: true});
             this.props.authenticateUser();
         }
 
         if (this.props.authenticated){
-            this.setState({authenticating:false})
+
+            this.state = {
+        
+                logIn: false,
+                loggedIn: true,
+                token: token,
+                authenticating: false,
+            }
+            console.log('the user is authenticated, so authenticating is now being set to false')
+            // this.setState({authenticating:false})
         }
         // this.props.authenticateUser(); 
     }
 
-    state = {
+    // state = {
         
-        logIn: false,
-        loggedIn: false,
-        token: null,
-        authenticating: false,
-    }
+    //     logIn: false,
+    //     loggedIn: false,
+    //     token: null,
+    //     authenticating: false,
+    // }
 
     handleSignUpForm = (credentials) => {
         console.log(credentials);
@@ -110,10 +127,11 @@ class Container extends Component {
 
     render(){
 
-        // this.props.authenticateUser();
-        // console.log(this.props)
+        
 
         console.log('in render method, landing');
+        console.log(this.props.authenticated);
+        console.log(this.state.authenticating);
 
         // should wait to render the next page, if the user is currently authenticating.
 
@@ -130,7 +148,6 @@ class Container extends Component {
                     </UserConsumer>
                     
                 </div>
-                // <Redirect to='/dashboard' />
             )
         } else if (this.state.authenticating) {
             return (
@@ -177,7 +194,9 @@ const Landing = (props) => {
 
     const handleModalToggle = () => {
         setOpen(!open);
-    }
+    };
+
+    console.log('THE COMPONENT WE DONT WANT TO RENDER IS RENDERING')
 
     return (
         
