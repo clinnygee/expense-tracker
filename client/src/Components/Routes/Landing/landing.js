@@ -23,10 +23,7 @@ class Container extends Component {
             console.log('there is a token, but the user is not authenticated')
             // this.setState({authenticating: true});
             this.props.authenticateUser();
-        }
-
-        if (this.props.authenticated){
-
+        } else if (this.props.authenticated){
             this.state = {
         
                 logIn: false,
@@ -36,17 +33,17 @@ class Container extends Component {
             }
             console.log('the user is authenticated, so authenticating is now being set to false')
             // this.setState({authenticating:false})
+        } else {
+            this.state = {
+                logIn: false,
+                loggedIn: false,
+                token: null,
+                authenticating: false,
+            }
         }
-        // this.props.authenticateUser(); 
-    }
 
-    // state = {
         
-    //     logIn: false,
-    //     loggedIn: false,
-    //     token: null,
-    //     authenticating: false,
-    // }
+    }
 
     handleSignUpForm = (credentials) => {
         console.log(credentials);
@@ -124,6 +121,24 @@ class Container extends Component {
         // this.authenticateUser();
         // // check if the user is storing a valid jwt.
     };
+
+    shouldComponentUpdate(){
+        
+        // add a check here to see if theres a jwt, if theres not a jwt & authenticating is set to true
+        // this seems like a ghetto work around, but it works.
+        // not sure what the correct way to handle this is.
+
+        let token = sessionStorage.getItem('jwt');
+
+        if(!token && this.state.authenticating === true){
+            
+            this.setState({authenticating:false});
+            return true;
+        } else {
+            return true
+        }
+        
+    }
 
     render(){
 
