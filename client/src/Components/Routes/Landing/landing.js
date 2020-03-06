@@ -154,7 +154,7 @@ class Container extends Component {
                 </div>
                 
             )
-        } else if (this.props.authenticating) {
+        } else if (this.state.authenticating) {
             return (
                 <div>AUTHENTICATING</div>
             )
