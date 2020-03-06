@@ -9,7 +9,18 @@ class Container extends Component {
     constructor(props){
         super(props);
         console.log(this.props)
-        this.props.authenticateUser(); 
+
+        let token = sessionStorage.getItem('jwt');
+        if(token && !this.props.authenticated){
+            console.log('there is a token, but the user is not authenticated')
+            this.setState({authenticating: true});
+            this.props.authenticateUser();
+        }
+
+        if (this.props.authenticated){
+            this.setState({authenticating:false})
+        }
+        // this.props.authenticateUser(); 
     }
 
     state = {
@@ -17,6 +28,7 @@ class Container extends Component {
         logIn: false,
         loggedIn: false,
         token: null,
+        authenticating: false,
     }
 
     handleSignUpForm = (credentials) => {
@@ -59,14 +71,11 @@ class Container extends Component {
     };
 
     handleLogInResponse = (res) => {
-        // set the token in state, or in the context api.
-        // console.log(res.token);
+        
         sessionStorage.setItem('jwt', res.token);
         
         this.props.setJwt(res.token);
-        // this.setState({resStatus: res.status});
-        // console.log(sessionStorage.getItem('jwt'));
-        // console.log(res.json());
+        
     };
 
     authenticateUser = () => {
