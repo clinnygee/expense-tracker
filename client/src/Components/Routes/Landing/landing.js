@@ -132,6 +132,10 @@ class Container extends Component {
                 </div>
                 // <Redirect to='/dashboard' />
             )
+        } else if (this.state.authenticating) {
+            return (
+                <div>AUTHENTICATING</div>
+            )
         } else if (this.state.logIn){
             return (
                 <div className='app'>
@@ -154,11 +158,7 @@ class Container extends Component {
                 </div>
                 
             )
-        } else if (this.state.authenticating) {
-            return (
-                <div>AUTHENTICATING</div>
-            )
-        } else {
+        }  else {
             return (
                 <div className='app'>
                     <Landing onRegisterPageRequest={this.handleRegisterPageRequest}/>
