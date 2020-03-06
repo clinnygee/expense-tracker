@@ -3,6 +3,7 @@ import IncomeExpenseToggle from './IncomeExpenseToggle';
 import IconSubmitForm from './IconSubmitForm';
 import SubmitForm from './SubmitForm';
 import {Redirect} from 'react-router-dom';
+import apiCall from '../../../API_CALLS';
 
 // Displays a top bar that is a choice between income/expense.
 
@@ -81,16 +82,8 @@ class Create extends Component {
     };
 
     submitTransaction = (transaction) => {
-        let token = sessionStorage.getItem('jwt');
-        return fetch('/create', {
-            method: 'POST',
-            body: JSON.stringify(transaction),
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            },
-            
-        }).then(res => {
+
+        return apiCall('/create', 'POST', transaction, ).then(res => {
             console.log(res)
             if(res.status === 200){
                 this.props.requestUpdate();

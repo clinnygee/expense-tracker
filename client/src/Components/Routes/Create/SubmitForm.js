@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {Input} from '../../ReusableComponents';
 
 class SubmitForm extends Component {
 
@@ -42,12 +43,14 @@ class SubmitForm extends Component {
                                 <p>{this.props.icon.category}</p>
                             </div>
                             <div className='create-submit-form-form-amount'>
-                                <label for='amount'>Amount</label>
-                                <input name='amount' required type='number' onChange={this.onAmountChange}></input>
+                                <label htmlFor='amount'>Amount</label>
+                                <Input name={'amount'} required={true} type={'number'} onChange={this.onAmountChange} />
+                                {/* <input name='amount' required type='number' onChange={this.onAmountChange}></input> */}
                             </div>
                             <div className='create-submit-form-form-description'> 
-                                <label for='description'>Description</label>
-                                <input name='description' onChange={this.onDescriptionChange}></input>
+                                <label htmlFor='description'>Description</label>
+                                <Input name={'description'} onChange={this.onDescriptionChange} />
+                                {/* <input name='description' onChange={this.onDescriptionChange}></input> */}
                             </div>
                             <div className='create-submit-form-form-submit'>
                                 <button type="button" class="btn btn-primary btn-lg" onClick={this.handleSubmit}>Add</button>

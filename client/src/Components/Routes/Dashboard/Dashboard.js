@@ -3,6 +3,7 @@ import Summary from './Summary';
 import CreateButton from './CreateButton';
 import {Link} from 'react-router-dom';
 import EditableTransaction from './EditableTransaction';
+import apiCall from '../../../API_CALLS';
 
 class Dashboard extends Component {
 
@@ -39,29 +40,13 @@ class Dashboard extends Component {
 
     handleDeleteTransactions = async (transactionId) => {
 
-        console.log(JSON.stringify({transaction_id: transactionId}))
-        let token = sessionStorage.getItem('jwt');
-
-        let response = await fetch('/transactions/delete', {
-            method: 'DELETE',
-            body: JSON.stringify({transaction_id: transactionId}),
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            }});
-
-            console.log(response);
-
-            
-
-            if(response.status === 200){
-                this.props.requestUpdate();
+        
+        let response = await apiCall('/transactions/delete', 'DELETE', {transaction_id: transactionId});
+        console.log(response)
+        
+        if(response.status === 200){
+            this.props.requestUpdate();
             }
-
-            
-
-
-        console.log('Delete transaction with Id of: ' +transactionId);
     }
 
     

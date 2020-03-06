@@ -1,6 +1,5 @@
 import React, {createContext} from 'react';
-
-
+import apiCall from './API_CALLS'
 
 const UserContext = createContext({
     username: '',
@@ -36,13 +35,8 @@ export class UserProvider extends React.Component {
         this.setJwt(token);
 
         if(token){
-            fetch('/checkToken', {
-                method: 'GET',
-                headers : {
-                    'content-type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                }
-            }).then(res => {
+            
+            apiCall('/checkToken', 'GET').then(res => {
                 if(res.status === 200){
                     this.setJwt(token);
                     this.logInSuccess()
@@ -88,15 +82,8 @@ export class UserProvider extends React.Component {
     };
 
     getUserData = () => {
-        let token = sessionStorage.getItem('jwt');
 
-        fetch('/dashboard', {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            }
-        }).then(response => {
+        apiCall('/dashboard', 'GET').then(response => {
             return response.json();
         }).then(parsedJson => {
             // this does not always return an image, if the user hasnt stored an image, and will break if they dont have one

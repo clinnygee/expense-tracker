@@ -31,7 +31,7 @@ class SignUp extends Component {
 
     onFieldChange = (e) => {
         // console.log(e.target.value);
-        console.log(e.target.placeholder);
+        // console.log(e.target.placeholder);
         if(e.target.placeholder === 'Username'){
             this.setState({Username: e.target.value})
         } else if(e.target.placeholder === 'Password') {
@@ -39,6 +39,9 @@ class SignUp extends Component {
         } else {
             this.setState({Confirm: e.target.value})
         }
+
+        console.log(this.state.Username);
+        console.log(this.state.Password)
 
         
     };
@@ -66,6 +69,8 @@ class SignUp extends Component {
             </div>
         );
     }
-}
+};
+
+// 
 
 export default SignUp;

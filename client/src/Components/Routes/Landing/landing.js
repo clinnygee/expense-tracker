@@ -3,6 +3,7 @@ import ToggleableForm from '../../ToggleableForm/ToggleableForm';
 import MainAppContainer from '../../Main'
 import './landing.css';
 import {UserConsumer} from '../../../user-context';
+import apiCall from '../../../API_CALLS';
 
 class Container extends Component {
 
@@ -44,31 +45,19 @@ class Container extends Component {
 
         
     }
-
+    // refactor these to use apiCall
     handleSignUpForm = (credentials) => {
         console.log(credentials);
-        return fetch('/register',  {
-            method: 'post',
-            body: JSON.stringify(credentials),
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-            },
-          }).then(res => console.log(res));
+        return apiCall('/register', 'POST', credentials).then(res => console.log(res));
     };
 
     
 
     handleLogInForm = (credentials) => {
 
-        return fetch('/login', {
-            method: 'post',
-            body: JSON.stringify(credentials),
-            headers: {
-                'Accept': 'application/json',
-                'content-type': 'application/json',
-            },
-        }).then(res => {
+        console.log(credentials)
+
+        return apiCall('/login', 'POST', credentials).then(res => {
             if(res.status === 200){
                 
                 
@@ -92,34 +81,32 @@ class Container extends Component {
         
     };
 
-    authenticateUser = () => {
+    // authenticateUser = () => {
         
-        let token = sessionStorage.getItem('jwt');
+    //     let token = sessionStorage.getItem('jwt');
 
         
-        fetch('/checkToken', {
-            method: 'GET',
-            headers : {
-                'content-type': 'application/json',
-                'Authorization': `Bearer ${token}`,
-            }
-        }).then(res => {
-            if(res.status === 200){
-                this.props.setJwt(token);
-                this.props.logInSuccess()
-            }
+    //     fetch('/checkToken', {
+    //         method: 'GET',
+    //         headers : {
+    //             'content-type': 'application/json',
+    //             'Authorization': `Bearer ${token}`,
+    //         }
+    //     }).then(res => {
+    //         if(res.status === 200){
+    //             this.props.setJwt(token);
+    //             this.props.logInSuccess()
+    //         }
             
-        })
-    };
+    //     })
+    // };
 
     handleRegisterPageRequest = () => {
         this.setState({logIn: true});
     }
 
     componentDidMount(){
-        // this.props.authenticateUser();
-        // this.authenticateUser();
-        // // check if the user is storing a valid jwt.
+        
     };
 
     shouldComponentUpdate(){
