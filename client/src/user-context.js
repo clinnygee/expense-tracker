@@ -8,6 +8,7 @@ const UserContext = createContext({
     _id: '',
     imageHex: '',
     authenticated: false,
+    authenticating: false,
     jwt: '',
     authenticateUser: () => {},
     updateUserData: () => {},
@@ -26,6 +27,11 @@ export class UserProvider extends React.Component {
 
     
     authenticateUser = () => {
+
+        console.log('in context authenticateUser')
+
+        this.setState({authenticating: true});
+        
         let token = sessionStorage.getItem('jwt');
 
         this.setJwt(token);
@@ -41,12 +47,14 @@ export class UserProvider extends React.Component {
                 if(res.status === 200){
                     this.setJwt(token);
                     this.logInSuccess()
+                    
                 } else{
                     sessionStorage.removeItem('jwt')
                 }
                 
             })
-        }
+        };
+        this.setState({authenticating: false});
     }
     // Change this to be a fetch call, so it can be called when a refresh is required when data is changed on the server, 
     // and when the user successfully logs in
@@ -119,6 +127,8 @@ export class UserProvider extends React.Component {
         transactions: [],
         _id: '',
         imageHex: null,
+        authenticated: false,
+        authenticating: false,
         selectedMonth: new Date().getMonth(),
         selectedYear: new Date().getFullYear(),
         authenticateUser: this.authenticateUser,

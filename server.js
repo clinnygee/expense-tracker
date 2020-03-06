@@ -42,10 +42,6 @@ app.use(cookieParser());
 
 app.use(bodyParser.json());
 
-// app.use(multer({dest: './uploads',
-//     rename: function(fieldname, filename){
-//         return filename;
-//     }}));
 
 const mongo_uri = (process.env.MONGODB_URI || 'mongodb://localhost/expense-tracker');
 
@@ -57,20 +53,8 @@ mongoose.connect(mongo_uri, {useNewUrlParser: true}, (err) => {
     }
 })
 
-// app.use((req, res, next) => {
-//     res.setHeader('Content-Type', 'application/json');
-//     next();
-// })
-// app.use((req, res) => {
-//     res.setHeader('Content-Type', 'text/plain');
-//     res.write('you posted: \n');
-//     res.end(JSON.stringify(req.body, null, 2));
-// })
 
 app.get('/', (req, res) => {
-    console.log(parent_dirname)
-    console.log('at the log in page');
-    // res.sendFile(path.join('../', 'build', 'index.html'));
     res.sendFile(__dirname + '/client/build/index.html')
 });
 
@@ -89,10 +73,6 @@ app.post('/register', (req, res) => {
             res.status(200).json(user);
         }
     })
-    // console.log(req.body);
-    // // console.log(req);
-    // console.log('hit the register route');
-    // res.json(JSON.stringify(req.body));
 });
 
 app.post('/login', (req, res) => {

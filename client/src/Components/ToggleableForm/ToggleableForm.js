@@ -42,6 +42,8 @@ class ToggleableForm extends Component {
         
         
     }
-}
+};
+
+// There can be a broad form component, that can be passed its input fields as {props.children} If you make a component like this <Component> || <Component/> everything that resides within || is passed as props.children.
 
 export default ToggleableForm;

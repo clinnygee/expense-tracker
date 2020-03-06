@@ -6,6 +6,12 @@ import {UserConsumer} from '../../../user-context';
 
 class Container extends Component {
 
+    constructor(props){
+        super(props);
+        console.log(this.props)
+        this.props.authenticateUser(); 
+    }
+
     state = {
         
         logIn: false,
@@ -88,7 +94,7 @@ class Container extends Component {
     }
 
     componentDidMount(){
-        this.props.authenticateUser();
+        // this.props.authenticateUser();
         // this.authenticateUser();
         // // check if the user is storing a valid jwt.
     };
@@ -96,7 +102,11 @@ class Container extends Component {
     render(){
 
         // this.props.authenticateUser();
-        console.log(this.props)
+        // console.log(this.props)
+
+        console.log('in render method, landing');
+
+        // should wait to render the next page, if the user is currently authenticating.
 
         
 
@@ -134,6 +144,10 @@ class Container extends Component {
                     
                 </div>
                 
+            )
+        } else if (this.props.authenticating) {
+            return (
+                <div>AUTHENTICATING</div>
             )
         } else {
             return (

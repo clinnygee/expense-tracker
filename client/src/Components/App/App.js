@@ -18,11 +18,15 @@ function App() {
             <Route path='/'>
             <UserConsumer>
               {context => (
+                
+                
                 <Container 
                       authenticateUser={context.authenticateUser}
                       setJwt={context.setJwt}
                       logInSuccess={context.logInSuccess} 
-                      authenticated={context.authenticated}/>
+                      authenticated={context.authenticated}
+                      authenticating={context.authenticating}
+                      />
               )}
             </UserConsumer>
             </Route>
